@@ -10,7 +10,8 @@ import {
   ScreenSpaceEventHandler,
   ScreenSpaceEventType,
   defined,
-  HeightReference
+  HeightReference,
+  JulianDate
 } from 'cesium'
 import type { WaterRecord } from '@/modules/data'
 import type { WaterSiteInfo } from './types'
@@ -63,18 +64,19 @@ export class WaterLayer {
         const entity = pickedObject.id as Entity
 
         // 检查是否是水质站点
-        if (entity.properties && entity.properties.type === 'water') {
+        const props = entity.properties ? entity.properties.getValue(JulianDate.now()) : null
+        if (props && props.type === 'water') {
           const siteInfo: WaterSiteInfo = {
-            siteId: entity.properties.siteId,
+            siteId: props.siteId,
             siteName: entity.name || '',
-            lon: entity.properties.lon,
-            lat: entity.properties.lat,
-            grade: entity.properties.grade,
-            ph: entity.properties.ph,
-            do: entity.properties.do,
-            turbidity: entity.properties.turbidity,
-            temperature: entity.properties.temperature,
-            timeISO: entity.properties.timeISO
+            lon: props.lon,
+            lat: props.lat,
+            grade: props.grade,
+            ph: props.ph,
+            do: props.do,
+            turbidity: props.turbidity,
+            temperature: props.temperature,
+            timeISO: props.timeISO
           }
 
           // 触发回调

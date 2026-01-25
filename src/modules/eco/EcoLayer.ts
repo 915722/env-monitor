@@ -10,7 +10,8 @@ import {
   ScreenSpaceEventType,
   defined,
   PolylineGraphics,
-  HeightReference
+  HeightReference,
+  JulianDate
 } from 'cesium'
 import type { EcoRecord } from '@/modules/data'
 import type { EcoSiteInfo } from './types'
@@ -47,19 +48,20 @@ export class EcoLayer {
         const entity = pickedObject.id as Entity
 
         // 检查是否是生态站点
-        if (entity.properties && entity.properties.type === 'eco') {
+        const props = entity.properties ? entity.properties.getValue(JulianDate.now()) : null
+        if (props && props.type === 'eco') {
           const siteInfo: EcoSiteInfo = {
-            siteId: entity.properties.siteId,
+            siteId: props.siteId,
             siteName: entity.name || '',
-            lon: entity.properties.lon,
-            lat: entity.properties.lat,
-            birds: entity.properties.birds,
-            fish: entity.properties.fish,
-            totalCount: entity.properties.totalCount,
-            species: entity.properties.species,
-            snapshotUrl: entity.properties.snapshotUrl,
-            videoUrl: entity.properties.videoUrl,
-            timeISO: entity.properties.timeISO
+            lon: props.lon,
+            lat: props.lat,
+            birds: props.birds,
+            fish: props.fish,
+            totalCount: props.totalCount,
+            species: props.species,
+            snapshotUrl: props.snapshotUrl,
+            videoUrl: props.videoUrl,
+            timeISO: props.timeISO
           }
 
           // 触发回调
