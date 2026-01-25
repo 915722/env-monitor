@@ -38,12 +38,29 @@
         <TimeControl :time-engine="timeEngine" />
       </div>
 
-      <!-- 右侧生态面板 -->
+      <!-- 图层管理面板 -->
+      <transition name="fade">
+        <div v-if="showLayerManager" class="layer-manager-wrapper">
+          <LayerManager
+            v-model:water="waterLayerVisible"
+            v-model:eco="ecoLayerVisible"
+            @close="showLayerManager = false"
+          />
+        </div>
+      </transition>
+
+      <!-- 右侧面板（生态/水质） -->
       <transition name="slide-left">
         <div v-if="showEcoPanel" class="right-panel">
           <EcoPanel
             :site-info="selectedEcoSite"
             @close="handleEcoPanelClose"
+          />
+        </div>
+        <div v-else-if="showWaterPanel" class="right-panel">
+          <WaterPanel
+            :site-info="selectedWaterSite"
+            @close="handleWaterPanelClose"
           />
         </div>
       </transition>
@@ -52,7 +69,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted, watch } from 'vue'
 import { ElMessage } from 'element-plus'
 import dayjs from 'dayjs'
 import { Cartesian3 } from 'cesium'
@@ -66,7 +83,10 @@ import { MeasureTool } from '@/modules/measure'
 import { dataManager } from '@/modules/data'
 import { useGlobalStore, useAppStore } from '@/store'
 import type { EcoSiteInfo } from '@/modules/eco'
+import type { WaterSiteInfo } from '@/modules/water/types'
 import EcoPanel from '@/components/EcoPanel.vue'
+import WaterPanel from '@/components/WaterPanel.vue'
+import LayerManager from '@/components/LayerManager.vue'
 
 // ========== 状态 ==========
 const globalStore = useGlobalStore()
@@ -82,9 +102,16 @@ const ecoSiteCount = ref(0)
 const timePointCount = ref(0)
 const currentTimeISO = ref<string | null>(null)
 
-// 生态面板
+// 面板状态
 const showEcoPanel = ref(false)
 const selectedEcoSite = ref<EcoSiteInfo | null>(null)
+
+const showWaterPanel = ref(false)
+const selectedWaterSite = ref<WaterSiteInfo | null>(null)
+
+const showLayerManager = ref(false)
+const waterLayerVisible = ref(true)
+const ecoLayerVisible = ref(true)
 
 // 核心实例
 let waterLayer: WaterLayer | null = null
@@ -157,6 +184,7 @@ const initLayers = (viewer: any) => {
   ecoLayer.onSiteClick((siteInfo) => {
     selectedEcoSite.value = siteInfo
     showEcoPanel.value = true
+    showWaterPanel.value = false // 互斥
     
     // 更新 store
     appStore.setSelectedSite(siteInfo.siteId, 'eco')
@@ -164,8 +192,26 @@ const initLayers = (viewer: any) => {
     // 高亮站点
     ecoLayer?.unhighlightAll()
     ecoLayer?.highlightSite(siteInfo.siteId)
+    waterLayer?.unhighlightAll()
     
     console.log('🎯 点击生态站点:', siteInfo)
+  })
+
+  // 监听水质站点点击
+  waterLayer.onSiteClick((siteInfo) => {
+    selectedWaterSite.value = siteInfo
+    showWaterPanel.value = true
+    showEcoPanel.value = false // 互斥
+    
+    // 更新 store
+    appStore.setSelectedSite(siteInfo.siteId, 'water')
+    
+    // 高亮站点
+    waterLayer?.unhighlightAll()
+    waterLayer?.highlightSite(siteInfo.siteId)
+    ecoLayer?.unhighlightAll()
+    
+    console.log('🎯 点击水质站点:', siteInfo)
   })
   
   // 创建测量工具
@@ -173,6 +219,17 @@ const initLayers = (viewer: any) => {
   
   console.log('✅ 图层初始化完成')
 }
+
+// 监听图层可见性变化
+watch(waterLayerVisible, (val) => {
+  waterLayer?.setVisible(val)
+  if (!val) showWaterPanel.value = false
+})
+
+watch(ecoLayerVisible, (val) => {
+  ecoLayer?.setVisible(val)
+  if (!val) showEcoPanel.value = false
+})
 
 /**
  * 4. 初始化时间引擎
@@ -280,6 +337,16 @@ const handleEcoPanelClose = () => {
 }
 
 /**
+ * 关闭水质面板
+ */
+const handleWaterPanelClose = () => {
+  showWaterPanel.value = false
+  selectedWaterSite.value = null
+  appStore.clearSelectedSite()
+  waterLayer?.unhighlightAll()
+}
+
+/**
  * 模块切换处理
  */
 const handleModuleChange = (module: string) => {
@@ -292,21 +359,9 @@ const handleModuleChange = (module: string) => {
   
   // 视觉反馈：飞向对应图层
   if (module === 'water' && waterLayer) {
-    // 简单的飞向第一个水质站点（如果有）
-    // 实际项目中应该计算包围盒
-    // 这里我们假设 dataManager 已经加载了数据，我们可以直接让 viewer 飞向一个默认位置 
-    // 或者我们给 WaterLayer 加一个 flyToOverview() 方法
-    // 这里暂时用一个硬编码的视口，或者飞向第一个实体
-    
-    // 由于 WaterLayer 没有公开 entities，我们尝试用 storage 获取数据定位
-    // 但最简单的是在 WaterLayer 加个方法。
-    // 不过为了不动太多文件，我们直接操作 Viewer Camera (如果能获取到位置)
-    
-    // 更好的方式：调用 flight 逻辑
-    // 假设数据就在那里，我们尝试飞向它
     const viewer = getViewer()
     viewer.camera.flyTo({
-      destination: Cartesian3.fromDegrees(120.15, 30.28, 50000), // 假设是杭州附近，或者您的数据位置
+      destination: Cartesian3.fromDegrees(120.15, 30.28, 50000),
       orientation: {
         heading: 0,
         pitch: -0.8,
@@ -326,7 +381,7 @@ const handleModuleChange = (module: string) => {
     })
     ElMessage.success('已切换至生态监测模式')
   } else if (module === 'layer') {
-    ElMessage.info('图层管理面板暂未实现')
+    showLayerManager.value = !showLayerManager.value
   } else if (module === 'measure') {
     ElMessage.success('已开启测量工具')
   }
@@ -505,6 +560,25 @@ onUnmounted(() => {
   background: rgba(255, 255, 255, 0.98);
   backdrop-filter: blur(10px);
   border-radius: 12px;
+  border-radius: 12px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* 图层管理面板 */
+.layer-manager-wrapper {
+  position: absolute;
+  top: 80px;
+  left: 296px; /* Sidebar width + gap */
+  z-index: 100;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>

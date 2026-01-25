@@ -133,7 +133,7 @@ export class WaterLayer {
       id: `water_${site.id}_${Date.now()}`,
       name: site.name,
       position: Cartesian3.fromDegrees(site.lon, site.lat, 0),
-      
+
       // 使用 Billboard 显示圆形图标
       billboard: {
         image: this.createCircleIcon(color),
@@ -299,9 +299,18 @@ export class WaterLayer {
     sites: Array<{ id: string; name: string; lon: number; lat: number }>
   ): Promise<void> {
     console.log(`🔄 更新水质图层: ${timeISO}`)
-    
+
     // 重新渲染
     this.render(waterRecords, sites)
+  }
+
+  /**
+   * 设置图层可见性
+   */
+  setVisible(visible: boolean): void {
+    this.entities.forEach((entity) => {
+      entity.show = visible
+    })
   }
 
   /**

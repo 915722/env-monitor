@@ -257,6 +257,15 @@ export class EcoLayer {
   }
 
   /**
+   * 设置图层可见性
+   */
+  setVisible(visible: boolean): void {
+    this.entities.forEach((entity) => {
+      entity.show = visible
+    })
+  }
+
+  /**
    * 销毁图层
    */
   destroy(): void {
