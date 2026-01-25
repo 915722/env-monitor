@@ -64,7 +64,8 @@ export class WaterLayer {
         const entity = pickedObject.id as Entity
 
         // 检查是否是水质站点
-        const props = entity.properties ? entity.properties.getValue(JulianDate.now()) : null
+        const now = this.viewer.clock.currentTime
+        const props = entity.properties ? entity.properties.getValue(now) : null
         if (props && props.type === 'water') {
           const siteInfo: WaterSiteInfo = {
             siteId: props.siteId,

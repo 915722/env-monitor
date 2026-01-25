@@ -261,6 +261,9 @@ const initTimeEngine = async (timePoints: string[]) => {
     
     // 加载该时间点的数据
     await updateLayers(timeISO)
+    
+    // 提示用户数据已更新
+    // ElMessage.info(`数据已更新至: ${dayjs(timeISO).format('HH:mm')}`)
   })
   
   // 设置到组件引用（用于传递给 TimeControl）

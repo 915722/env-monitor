@@ -48,7 +48,8 @@ export class EcoLayer {
         const entity = pickedObject.id as Entity
 
         // 检查是否是生态站点
-        const props = entity.properties ? entity.properties.getValue(JulianDate.now()) : null
+        const now = this.viewer.clock.currentTime
+        const props = entity.properties ? entity.properties.getValue(now) : null
         if (props && props.type === 'eco') {
           const siteInfo: EcoSiteInfo = {
             siteId: props.siteId,
