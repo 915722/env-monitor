@@ -36,7 +36,7 @@
 
       <!-- 时间控制面板 -->
       <div class="time-control-wrapper">
-        <TimeControl :time-engine="timeEngine" />
+        <TimeControl :time-engine="timeEngineRef" />
       </div>
 
       <!-- 图层管理面板 -->
