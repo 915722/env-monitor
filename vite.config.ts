@@ -1,16 +1,14 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import cesium from 'vite-plugin-cesium'
 import { resolve } from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command }) => ({
   // 开发环境使用根路径，生产环境使用 GitHub Pages 路径
   base: command === 'build' ? '/env-monitor/' : '/',
-  
+
   plugins: [
-    vue(),
-    cesium() // Cesium 静态资源自动处理
+    vue()
   ],
   resolve: {
     alias: {
