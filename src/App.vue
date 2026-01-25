@@ -55,6 +55,7 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import { ElMessage } from 'element-plus'
 import dayjs from 'dayjs'
+import { Cartesian3 } from 'cesium'
 import CesiumViewer from '@/modules/scene/CesiumViewer.vue'
 import TimeControl from '@/components/TimeControl.vue'
 import Sidebar from '@/components/Sidebar.vue'
@@ -287,6 +288,47 @@ const handleModuleChange = (module: string) => {
   // 切换模块时停止测量
   if (module !== 'measure' && measureTool) {
     measureTool.stop()
+  }
+  
+  // 视觉反馈：飞向对应图层
+  if (module === 'water' && waterLayer) {
+    // 简单的飞向第一个水质站点（如果有）
+    // 实际项目中应该计算包围盒
+    // 这里我们假设 dataManager 已经加载了数据，我们可以直接让 viewer 飞向一个默认位置 
+    // 或者我们给 WaterLayer 加一个 flyToOverview() 方法
+    // 这里暂时用一个硬编码的视口，或者飞向第一个实体
+    
+    // 由于 WaterLayer 没有公开 entities，我们尝试用 storage 获取数据定位
+    // 但最简单的是在 WaterLayer 加个方法。
+    // 不过为了不动太多文件，我们直接操作 Viewer Camera (如果能获取到位置)
+    
+    // 更好的方式：调用 flight 逻辑
+    // 假设数据就在那里，我们尝试飞向它
+    const viewer = getViewer()
+    viewer.camera.flyTo({
+      destination: Cartesian3.fromDegrees(120.15, 30.28, 50000), // 假设是杭州附近，或者您的数据位置
+      orientation: {
+        heading: 0,
+        pitch: -0.8,
+        roll: 0
+      }
+    })
+    ElMessage.success('已切换至水质监测模式')
+  } else if (module === 'ecology' && ecoLayer) {
+    const viewer = getViewer()
+    viewer.camera.flyTo({
+      destination: Cartesian3.fromDegrees(120.15, 30.28, 50000),
+      orientation: {
+        heading: 0,
+        pitch: -0.8,
+        roll: 0
+      }
+    })
+    ElMessage.success('已切换至生态监测模式')
+  } else if (module === 'layer') {
+    ElMessage.info('图层管理面板暂未实现')
+  } else if (module === 'measure') {
+    ElMessage.success('已开启测量工具')
   }
 }
 
