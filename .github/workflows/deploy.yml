@@ -42,6 +42,9 @@ jobs:
         env:
           NODE_OPTIONS: "--max-old-space-size=4096"
 
+      - name: 由于使用 Vite，添加 .nojekyll 防止 GitHub Files 忽略下划线文件
+        run: touch dist/.nojekyll
+
       - name: 上传构建结果
         uses: actions/upload-pages-artifact@v3
         with:

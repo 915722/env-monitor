@@ -5,11 +5,8 @@ import { resolve } from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  // GitHub Pages 部署配置
-  // 如果部署到 https://<USERNAME>.github.io/<REPO>/
-  // 则设置 base 为 '/<REPO>/'
-  // 如果部署到自定义域名或根路径，设置为 '/'
-  base: process.env.NODE_ENV === 'production' ? '/env-monitor/' : '/',
+  // GitHub Pages 部署配置 - 由 GitHub Actions 在部署时处理
+  base: './',
   
   plugins: [
     vue(),
