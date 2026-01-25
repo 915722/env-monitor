@@ -1,0 +1,45 @@
+{
+  "data": [
+    {
+      "siteId": "camera_001",
+      "siteName": "湿地生态摄像头A",
+      "timestamp": "2026-01-25T08:00:00Z",
+      "species": "白鹭",
+      "birdCount": 15,
+      "fishCount": 8,
+      "images": [
+        "https://picsum.photos/400/300?random=1"
+      ],
+      "videoUrl": "https://www.w3schools.com/html/mov_bbb.mp4"
+    },
+    {
+      "siteId": "camera_001",
+      "siteName": "湿地生态摄像头A",
+      "timestamp": "2026-01-25T09:00:00Z",
+      "species": "白鹭",
+      "birdCount": 23,
+      "fishCount": 12,
+      "images": [
+        "https://picsum.photos/400/300?random=2"
+      ]
+    },
+    {
+      "siteId": "camera_001",
+      "siteName": "湿地生态摄像头A",
+      "timestamp": "2026-01-25T10:00:00Z",
+      "species": "白鹭",
+      "birdCount": 18,
+      "fishCount": 10,
+      "images": [
+        "https://picsum.photos/400/300?random=3",
+        "https://picsum.photos/400/300?random=4"
+      ],
+      "videoUrl": "https://www.w3schools.com/html/movie.mp4"
+    }
+  ],
+  "meta": {
+    "total": 3,
+    "updateTime": "2026-01-25T10:00:00Z",
+    "description": "生态监测数据 - 3个时间点，演示时间轴播放"
+  }
+}

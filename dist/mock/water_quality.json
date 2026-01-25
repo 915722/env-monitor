@@ -1,0 +1,81 @@
+{
+  "data": [
+    {
+      "siteId": "water_001",
+      "siteName": "西湖水质站",
+      "timestamp": "2026-01-25T08:00:00Z",
+      "level": 1,
+      "parameters": {
+        "pH": 7.2,
+        "dissolvedOxygen": 8.5,
+        "turbidity": 3.2,
+        "temperature": 12.5
+      }
+    },
+    {
+      "siteId": "water_001",
+      "siteName": "西湖水质站",
+      "timestamp": "2026-01-25T09:00:00Z",
+      "level": 2,
+      "parameters": {
+        "pH": 7.3,
+        "dissolvedOxygen": 8.2,
+        "turbidity": 4.1,
+        "temperature": 13.0
+      }
+    },
+    {
+      "siteId": "water_001",
+      "siteName": "西湖水质站",
+      "timestamp": "2026-01-25T10:00:00Z",
+      "level": 2,
+      "parameters": {
+        "pH": 7.4,
+        "dissolvedOxygen": 8.0,
+        "turbidity": 4.5,
+        "temperature": 13.5
+      }
+    },
+    {
+      "siteId": "water_002",
+      "siteName": "钱塘江监测站",
+      "timestamp": "2026-01-25T08:00:00Z",
+      "level": 3,
+      "parameters": {
+        "pH": 7.0,
+        "dissolvedOxygen": 7.5,
+        "turbidity": 6.0,
+        "temperature": 11.8
+      }
+    },
+    {
+      "siteId": "water_002",
+      "siteName": "钱塘江监测站",
+      "timestamp": "2026-01-25T09:00:00Z",
+      "level": 3,
+      "parameters": {
+        "pH": 7.1,
+        "dissolvedOxygen": 7.3,
+        "turbidity": 6.5,
+        "temperature": 12.2
+      }
+    },
+    {
+      "siteId": "water_002",
+      "siteName": "钱塘江监测站",
+      "timestamp": "2026-01-25T10:00:00Z",
+      "level": 4,
+      "parameters": {
+        "pH": 6.9,
+        "dissolvedOxygen": 6.8,
+        "turbidity": 7.2,
+        "temperature": 12.5
+      }
+    }
+  ],
+  "meta": {
+    "total": 6,
+    "updateTime": "2026-01-25T10:00:00Z",
+    "description": "水质监测数据 - 3个时间点，演示时间轴播放"
+  }
+}
