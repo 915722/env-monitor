@@ -17,17 +17,17 @@
 
       <div class="popup-content">
         <el-descriptions :column="2" size="small" border>
-          <el-descriptions-item label="pH�?>
+          <el-descriptions-item label="pH值">
             <span class="value-text">{{ siteInfo.ph.toFixed(2) }}</span>
           </el-descriptions-item>
-          <el-descriptions-item label="溶解�?>
+          <el-descriptions-item label="溶解氧">
             <span class="value-text">{{ siteInfo.do.toFixed(2) }} mg/L</span>
           </el-descriptions-item>
           <el-descriptions-item label="浊度" v-if="siteInfo.turbidity">
             <span class="value-text">{{ siteInfo.turbidity.toFixed(2) }} NTU</span>
           </el-descriptions-item>
           <el-descriptions-item label="温度" v-if="siteInfo.temperature">
-            <span class="value-text">{{ siteInfo.temperature.toFixed(1) }} �?/span>
+            <span class="value-text">{{ siteInfo.temperature.toFixed(1) }} ℃</span>
           </el-descriptions-item>
         </el-descriptions>
 
@@ -66,7 +66,7 @@ const emit = defineEmits<{
   viewChart: [siteId: string]
 }>()
 
-// ========== 状�?==========
+// ========== 状态 ==========
 const popupStyle = ref({
   left: '50%',
   top: '20%',
@@ -81,17 +81,17 @@ const popupStyle = ref({
 const gradeText = computed(() => {
   if (!props.siteInfo) return ''
   const gradeMap = {
-    1: 'Ⅰ类 �?,
-    2: 'Ⅱ类 �?,
-    3: 'Ⅲ类 �?,
-    4: 'Ⅳ类 �?,
-    5: 'Ⅴ类 �?
+    1: 'Ⅰ类 优',
+    2: 'Ⅱ类 良',
+    3: 'Ⅲ类 中',
+    4: 'Ⅳ类 差',
+    5: 'Ⅴ类 劣'
   }
   return gradeMap[props.siteInfo.grade] || '未知'
 })
 
 /**
- * 格式化时�?
+ * 格式化时间
  */
 const formattedTime = computed(() => {
   if (!props.siteInfo) return '--'

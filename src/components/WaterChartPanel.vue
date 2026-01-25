@@ -14,15 +14,15 @@
       </template>
 
       <div v-loading="loading" class="chart-content">
-        <!-- pH 折线�?-->
+        <!-- pH 折线图 -->
         <div class="chart-item">
-          <h4>pH 值趋�?/h4>
+          <h4>pH 值趋势</h4>
           <div ref="phChartRef" class="chart"></div>
         </div>
 
         <!-- 溶解氧折线图 -->
         <div class="chart-item">
-          <h4>溶解氧趋�?/h4>
+          <h4>溶解氧趋势</h4>
           <div ref="doChartRef" class="chart"></div>
         </div>
 
@@ -68,7 +68,7 @@ const emit = defineEmits<{
   close: []
 }>()
 
-// ========== 状�?==========
+// ========== 状态 ==========
 const loading = ref(false)
 const siteName = ref('')
 const dataPoints = ref<WaterRecord[]>([])
@@ -80,7 +80,7 @@ const doChartRef = ref<HTMLDivElement>()
 let phChart: echarts.ECharts | null = null
 let doChart: echarts.ECharts | null = null
 
-// ========== 计算属�?==========
+// ========== 计算属性 ==========
 
 /**
  * 时间范围
@@ -125,7 +125,7 @@ const loadData = async () => {
 
   loading.value = true
   try {
-    // 加载所有水质数�?
+    // 加载所有水质数据
     const allData = await dataManager.loadWaterQuality()
 
     // 筛选当前站点的数据
@@ -141,9 +141,9 @@ const loadData = async () => {
     // 渲染图表
     renderCharts()
 
-    console.log(`📊 加载�?${dataPoints.value.length} 条历史数据`)
+    console.log(`📊 加载了 ${dataPoints.value.length} 条历史数据`)
   } catch (error) {
-    console.error('�?加载历史数据失败:', error)
+    console.error('❌ 加载历史数据失败:', error)
   } finally {
     loading.value = false
   }
@@ -209,7 +209,7 @@ const renderPhChart = (times: string[], values: number[], grades: number[]) => {
     },
     series: [
       {
-        name: 'pH�?,
+        name: 'pH值',
         type: 'line',
         data: values,
         smooth: true,
@@ -293,7 +293,7 @@ const renderDoChart = (times: string[], values: number[], grades: number[]) => {
     },
     series: [
       {
-        name: '溶解�?,
+        name: '溶解氧',
         type: 'line',
         data: values,
         smooth: true,
@@ -355,11 +355,11 @@ const getGradeColor = (grade: number): string => {
  */
 const getGradeText = (grade: number): string => {
   const textMap: Record<number, string> = {
-    1: 'Ⅰ类 �?,
-    2: 'Ⅱ类 �?,
-    3: 'Ⅲ类 �?,
-    4: 'Ⅳ类 �?,
-    5: 'Ⅴ类 �?
+    1: 'Ⅰ类 优',
+    2: 'Ⅱ类 良',
+    3: 'Ⅲ类 中',
+    4: 'Ⅳ类 差',
+    5: 'Ⅴ类 劣'
   }
   return textMap[grade] || '未知'
 }

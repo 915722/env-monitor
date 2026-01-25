@@ -16,7 +16,7 @@
           </div>
         </div>
 
-        <!-- 时间轴滑�?-->
+        <!-- 时间轴滑块 -->
         <div class="time-slider">
           <el-slider
             v-model="currentIndex"
@@ -60,9 +60,9 @@
         <div class="speed-control">
           <label>播放速度</label>
           <el-radio-group v-model="playSpeed" @change="handleSpeedChange" size="small">
-            <el-radio-button :label="500">快�?/el-radio-button>
+            <el-radio-button :label="500">快速</el-radio-button>
             <el-radio-button :label="1000">正常</el-radio-button>
-            <el-radio-button :label="2000">慢�?/el-radio-button>
+            <el-radio-button :label="2000">慢速</el-radio-button>
           </el-radio-group>
         </div>
 
@@ -78,7 +78,7 @@
           <el-descriptions-item label="时间范围">
             {{ timeRangeText }}
           </el-descriptions-item>
-          <el-descriptions-item label="播放状�?>
+          <el-descriptions-item label="播放状态">
             <el-tag :type="statusType" size="small">
               {{ statusText }}
             </el-tag>
@@ -110,13 +110,13 @@ interface Props {
 
 const props = defineProps<Props>()
 
-// ========== 状�?==========
+// ========== 状态 ==========
 const currentIndex = ref(0)
 const playSpeed = ref(2000)
 const isPlaying = ref(false)
 const timePoints = ref<string[]>([])
 
-// ========== 计算属�?==========
+// ========== 计算属性 ==========
 
 /**
  * 是否有时间点
@@ -124,17 +124,17 @@ const timePoints = ref<string[]>([])
 const hasTimePoints = computed(() => timePoints.value.length > 0)
 
 /**
- * 最大索�?
+ * 最大索引
  */
 const maxIndex = computed(() => Math.max(0, timePoints.value.length - 1))
 
 /**
- * 时间点数�?
+ * 时间点数量
  */
 const timePointCount = computed(() => timePoints.value.length)
 
 /**
- * 格式化当前时�?
+ * 格式化当前时间
  */
 const formattedTime = computed(() => {
   if (!hasTimePoints.value || currentIndex.value >= timePoints.value.length) {
@@ -163,21 +163,21 @@ const timeRangeText = computed(() => {
 })
 
 /**
- * 状态文�?
+ * 状态文本
  */
 const statusText = computed(() => {
   if (!props.timeEngine) return '未初始化'
   const status = props.timeEngine.getStatus()
   const statusMap = {
-    playing: '播放�?,
-    paused: '已暂�?,
-    stopped: '已停�?
+    playing: '播放中',
+    paused: '已暂停',
+    stopped: '已停止'
   }
   return statusMap[status] || '未知'
 })
 
 /**
- * 状态类型（用于 Tag 颜色�?
+ * 状态类型（用于 Tag 颜色）
  */
 const statusType = computed(() => {
   if (!props.timeEngine) return 'info'
@@ -198,7 +198,7 @@ const marks = computed(() => {
   
   const result: Record<number, string> = {}
   
-  // 只标记首�?
+  // 只标记首尾
   result[0] = dayjs(timePoints.value[0]).format('HH:mm')
   if (timePoints.value.length > 1) {
     result[maxIndex.value] = dayjs(timePoints.value[maxIndex.value]).format('HH:mm')
@@ -218,7 +218,7 @@ const initTimePoints = () => {
   timePoints.value = props.timeEngine.getTimePoints()
   currentIndex.value = props.timeEngine.getCurrentIndex()
   
-  console.log(`�?TimeControl 初始�? ${timePoints.value.length} 个时间点`)
+  console.log(`⏰ TimeControl 初始化 ${timePoints.value.length} 个时间点`)
 }
 
 /**
@@ -243,7 +243,7 @@ const handlePlayPause = () => {
 }
 
 /**
- * 上一�?
+ * 上一个
  */
 const handlePrevious = () => {
   if (!props.timeEngine) return
@@ -251,7 +251,7 @@ const handlePrevious = () => {
 }
 
 /**
- * 下一�?
+ * 下一个
  */
 const handleNext = () => {
   if (!props.timeEngine) return
@@ -259,7 +259,7 @@ const handleNext = () => {
 }
 
 /**
- * 第一�?
+ * 第一个
  */
 const handleFirst = () => {
   if (!props.timeEngine) return
@@ -267,7 +267,7 @@ const handleFirst = () => {
 }
 
 /**
- * 最后一�?
+ * 最后一个
  */
 const handleLast = () => {
   if (!props.timeEngine) return
@@ -291,7 +291,7 @@ const onTimeChange = (timeISO: string) => {
   // 更新当前索引
   currentIndex.value = props.timeEngine.getCurrentIndex()
   
-  // 更新播放状�?
+  // 更新播放状态
   isPlaying.value = props.timeEngine.isPlaying()
 }
 
@@ -363,7 +363,7 @@ watch(() => props.timeEngine, (newEngine) => {
   letter-spacing: 1px;
 }
 
-/* 时间轴滑�?*/
+/* 时间轴滑块 */
 .time-slider {
   padding: 0 8px;
 }
@@ -377,7 +377,7 @@ watch(() => props.timeEngine, (newEngine) => {
   font-weight: 600;
 }
 
-/* 按钮�?*/
+/* 按钮组 */
 .control-buttons {
   margin: 8px 0;
 }
