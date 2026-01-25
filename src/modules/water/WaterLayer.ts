@@ -9,7 +9,9 @@ import {
   Color,
   ScreenSpaceEventHandler,
   ScreenSpaceEventType,
-  defined
+  ScreenSpaceEventType,
+  defined,
+  HeightReference
 } from 'cesium'
 import type { WaterRecord } from '@/modules/data'
 import type { WaterSiteInfo } from './types'
@@ -139,7 +141,7 @@ export class WaterLayer {
         image: this.createCircleIcon(color),
         width: 40,
         height: 40,
-        heightReference: 0, // NONE
+        heightReference: HeightReference.CLAMP_TO_GROUND,
         verticalOrigin: 1, // BOTTOM
         disableDepthTestDistance: Number.POSITIVE_INFINITY
       },
