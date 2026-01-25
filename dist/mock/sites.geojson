@@ -1,0 +1,46 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [120.15, 30.25, 50]
+      },
+      "properties": {
+        "id": "water_001",
+        "name": "西湖水质站",
+        "type": "water",
+        "riverId": "river_qiantang",
+        "status": "online"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [120.20, 30.30, 45]
+      },
+      "properties": {
+        "id": "water_002",
+        "name": "钱塘江监测站",
+        "type": "water",
+        "riverId": "river_qiantang",
+        "status": "online"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [119.95, 30.15, 120]
+      },
+      "properties": {
+        "id": "camera_001",
+        "name": "湿地生态摄像头A",
+        "type": "camera",
+        "status": "online"
+      }
+    }
+  ]
+}
