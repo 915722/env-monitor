@@ -128,8 +128,8 @@ export class EcoLayer {
       // 使用圆柱体表示（底座 + 柱体）
       cylinder: {
         length: height,
-        topRadius: 15,
-        bottomRadius: 15,
+        topRadius: 200,
+        bottomRadius: 200,
         material: color,
         outline: true,
         outlineColor: Color.WHITE,
@@ -214,8 +214,8 @@ export class EcoLayer {
     if (!entity || !entity.cylinder) return
 
     // 恢复原始大小
-    entity.cylinder.topRadius = 15
-    entity.cylinder.bottomRadius = 15
+    entity.cylinder.topRadius = 200
+    entity.cylinder.bottomRadius = 200
   }
 
   /**
@@ -224,8 +224,8 @@ export class EcoLayer {
   unhighlightAll(): void {
     this.entities.forEach((entity) => {
       if (entity.cylinder) {
-        entity.cylinder.topRadius = 15
-        entity.cylinder.bottomRadius = 15
+        entity.cylinder.topRadius = 200
+        entity.cylinder.bottomRadius = 200
       }
     })
   }
