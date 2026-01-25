@@ -1,9 +1,18 @@
 ﻿<template>
-  <div class="time-control">
-    <el-card class="time-card">
+  <div class="time-control" :class="{ 'is-collapsed': isCollapsed }">
+    <div v-if="isCollapsed" class="expand-btn" @click="toggleCollapse">
+      <el-icon size="24"><Timer /></el-icon>
+    </div>
+    
+    <el-card v-else class="time-card">
       <template #header>
         <div class="card-header">
-          <span>⏰ 时间轴控制</span>
+          <div class="header-title">
+            <span>⏰ 时间轴控制</span>
+          </div>
+          <el-button link @click="toggleCollapse">
+            <el-icon size="18"><Minus /></el-icon>
+          </el-button>
         </div>
       </template>
 
@@ -98,7 +107,8 @@ import {
   ArrowLeft,
   ArrowRight,
   DArrowLeft,
-  DArrowRight
+  DArrowRight,
+  Minus
 } from '@element-plus/icons-vue'
 import type { TimeEngine } from '@/modules/time'
 import dayjs from 'dayjs'
@@ -115,6 +125,7 @@ const currentIndex = ref(0)
 const playSpeed = ref(2000)
 const isPlaying = ref(false)
 const timePoints = ref<string[]>([])
+const isCollapsed = ref(false) // 折叠状态
 
 // ========== 计算属性 ==========
 
@@ -208,6 +219,13 @@ const marks = computed(() => {
 })
 
 // ========== 方法 ==========
+
+/**
+ * 切换折叠
+ */
+const toggleCollapse = () => {
+  isCollapsed.value = !isCollapsed.value
+}
 
 /**
  * 初始化时间点
@@ -327,6 +345,11 @@ watch(() => props.timeEngine, (newEngine) => {
 <style scoped>
 .time-control {
   width: 100%;
+  transition: all 0.3s ease;
+}
+
+.time-control.is-collapsed {
+  width: auto;
 }
 
 .time-card {
@@ -337,9 +360,34 @@ watch(() => props.timeEngine, (newEngine) => {
 .card-header {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+}
+
+.header-title {
+  display: flex;
+  align-items: center;
   gap: 8px;
   font-size: 15px;
   font-weight: 600;
+}
+
+.expand-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s;
+  color: #409eff;
+}
+
+.expand-btn:hover {
+  transform: scale(1.1);
+  background: #f0f9ff;
 }
 
 /* 当前时间显示 */

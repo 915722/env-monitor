@@ -4,9 +4,9 @@ import cesium from 'vite-plugin-cesium'
 import { resolve } from 'path'
 
 // https://vitejs.dev/config/
-export default defineConfig({
-  // GitHub Pages 部署配置 - 由 GitHub Actions 在部署时处理
-  base: '/env-monitor/',
+export default defineConfig(({ command }) => ({
+  // 开发环境使用根路径，生产环境使用 GitHub Pages 路径
+  base: command === 'build' ? '/env-monitor/' : '/',
   
   plugins: [
     vue(),
@@ -32,5 +32,5 @@ export default defineConfig({
       }
     }
   }
-})
+}))
 
