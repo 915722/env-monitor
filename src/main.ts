@@ -1,6 +1,10 @@
 /**
  * 应用入口文件
  */
+// 配置 Cesium 静态资源路径 (必须在 import Cesium 之前执行，或者在 runtime 之前)
+// @ts-ignore
+window.CESIUM_BASE_URL = import.meta.env.BASE_URL + 'cesium/'
+
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import ElementPlus from 'element-plus'
