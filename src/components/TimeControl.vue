@@ -32,6 +32,7 @@
             :min="0"
             :max="maxIndex"
             :marks="marks"
+            :show-tooltip="false"
             :disabled="!hasTimePoints"
             @change="handleSliderChange"
           />
@@ -413,7 +414,8 @@ watch(() => props.timeEngine, (newEngine) => {
 
 /* 时间轴滑块 */
 .time-slider {
-  padding: 0 8px;
+  padding: 0 12px;
+  margin-bottom: 24px; /* 为下方的时间刻度文字留出空间，防止与按钮重合 */
 }
 
 /* 播放速度 */
