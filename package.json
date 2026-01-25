@@ -1,0 +1,29 @@
+{
+  "name": "env-monitor-3d",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "环境监测三维可视化平台 - Vue3 + Cesium + ECharts",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "vue": "^3.4.15",
+    "cesium": "^1.113.0",
+    "echarts": "^5.5.0",
+    "pinia": "^2.1.7",
+    "element-plus": "^2.5.6",
+    "dayjs": "^1.11.10"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.3",
+    "@types/node": "^20.11.5",
+    "@types/cesium": "^1.113.0",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.12",
+    "vite-plugin-cesium": "^1.2.22",
+    "vue-tsc": "^1.8.27"
+  }
+}
+

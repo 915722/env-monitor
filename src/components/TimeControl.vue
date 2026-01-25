@@ -1,0 +1,390 @@
+<template>
+  <div class="time-control">
+    <el-card class="time-card">
+      <template #header>
+        <div class="card-header">
+          <el-icon><Timer /></el-icon>
+          <span>时间轴控制</span>
+        </div>
+      </template>
+
+      <el-space direction="vertical" :size="16" style="width: 100%;">
+        <!-- 当前时间显示 -->
+        <div class="current-time">
+          <label>当前时间</label>
+          <div class="time-display">
+            {{ formattedTime }}
+          </div>
+        </div>
+
+        <!-- 时间轴滑块 -->
+        <div class="time-slider">
+          <el-slider
+            v-model="currentIndex"
+            :min="0"
+            :max="maxIndex"
+            :marks="marks"
+            :disabled="!hasTimePoints"
+            @change="handleSliderChange"
+          />
+        </div>
+
+        <!-- 播放控制按钮 -->
+        <div class="control-buttons">
+          <el-button-group style="width: 100%;">
+            <el-button style="flex: 1;" @click="handleFirst" :disabled="!hasTimePoints">
+              <el-icon><DArrowLeft /></el-icon>
+            </el-button>
+            <el-button style="flex: 1;" @click="handlePrevious" :disabled="!hasTimePoints">
+              <el-icon><ArrowLeft /></el-icon>
+            </el-button>
+            <el-button
+              style="flex: 2;"
+              type="primary"
+              @click="handlePlayPause"
+              :disabled="!hasTimePoints"
+            >
+              <el-icon v-if="isPlaying"><VideoPause /></el-icon>
+              <el-icon v-else><VideoPlay /></el-icon>
+              <span style="margin-left: 8px;">{{ isPlaying ? '暂停' : '播放' }}</span>
+            </el-button>
+            <el-button style="flex: 1;" @click="handleNext" :disabled="!hasTimePoints">
+              <el-icon><ArrowRight /></el-icon>
+            </el-button>
+            <el-button style="flex: 1;" @click="handleLast" :disabled="!hasTimePoints">
+              <el-icon><DArrowRight /></el-icon>
+            </el-button>
+          </el-button-group>
+        </div>
+
+        <!-- 播放速度 -->
+        <div class="speed-control">
+          <label>播放速度</label>
+          <el-radio-group v-model="playSpeed" @change="handleSpeedChange" size="small">
+            <el-radio-button :label="500">快速</el-radio-button>
+            <el-radio-button :label="1000">正常</el-radio-button>
+            <el-radio-button :label="2000">慢速</el-radio-button>
+          </el-radio-group>
+        </div>
+
+        <!-- 统计信息 -->
+        <el-divider content-position="left">时间统计</el-divider>
+        <el-descriptions :column="2" size="small" border>
+          <el-descriptions-item label="时间点数">
+            {{ timePointCount }}
+          </el-descriptions-item>
+          <el-descriptions-item label="当前进度">
+            {{ progressText }}
+          </el-descriptions-item>
+          <el-descriptions-item label="时间范围">
+            {{ timeRangeText }}
+          </el-descriptions-item>
+          <el-descriptions-item label="播放状态">
+            <el-tag :type="statusType" size="small">
+              {{ statusText }}
+            </el-tag>
+          </el-descriptions-item>
+        </el-descriptions>
+      </el-space>
+    </el-card>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
+import {
+  Timer,
+  VideoPlay,
+  VideoPause,
+  ArrowLeft,
+  ArrowRight,
+  DArrowLeft,
+  DArrowRight
+} from '@element-plus/icons-vue'
+import type { TimeEngine } from '@/modules/time'
+import dayjs from 'dayjs'
+
+// ========== Props ==========
+interface Props {
+  timeEngine: TimeEngine | null
+}
+
+const props = defineProps<Props>()
+
+// ========== 状态 ==========
+const currentIndex = ref(0)
+const playSpeed = ref(2000)
+const isPlaying = ref(false)
+const timePoints = ref<string[]>([])
+
+// ========== 计算属性 ==========
+
+/**
+ * 是否有时间点
+ */
+const hasTimePoints = computed(() => timePoints.value.length > 0)
+
+/**
+ * 最大索引
+ */
+const maxIndex = computed(() => Math.max(0, timePoints.value.length - 1))
+
+/**
+ * 时间点数量
+ */
+const timePointCount = computed(() => timePoints.value.length)
+
+/**
+ * 格式化当前时间
+ */
+const formattedTime = computed(() => {
+  if (!hasTimePoints.value || currentIndex.value >= timePoints.value.length) {
+    return '--'
+  }
+  const time = timePoints.value[currentIndex.value]
+  return dayjs(time).format('YYYY-MM-DD HH:mm:ss')
+})
+
+/**
+ * 进度文本
+ */
+const progressText = computed(() => {
+  if (!hasTimePoints.value) return '--'
+  return `${currentIndex.value + 1} / ${timePoints.value.length}`
+})
+
+/**
+ * 时间范围文本
+ */
+const timeRangeText = computed(() => {
+  if (!hasTimePoints.value) return '--'
+  const start = dayjs(timePoints.value[0]).format('HH:mm')
+  const end = dayjs(timePoints.value[timePoints.value.length - 1]).format('HH:mm')
+  return `${start} ~ ${end}`
+})
+
+/**
+ * 状态文本
+ */
+const statusText = computed(() => {
+  if (!props.timeEngine) return '未初始化'
+  const status = props.timeEngine.getStatus()
+  const statusMap = {
+    playing: '播放中',
+    paused: '已暂停',
+    stopped: '已停止'
+  }
+  return statusMap[status] || '未知'
+})
+
+/**
+ * 状态类型（用于 Tag 颜色）
+ */
+const statusType = computed(() => {
+  if (!props.timeEngine) return 'info'
+  const status = props.timeEngine.getStatus()
+  const typeMap = {
+    playing: 'success',
+    paused: 'warning',
+    stopped: 'info'
+  }
+  return typeMap[status] || 'info'
+})
+
+/**
+ * Slider 标记
+ */
+const marks = computed(() => {
+  if (!hasTimePoints.value) return {}
+  
+  const result: Record<number, string> = {}
+  
+  // 只标记首尾
+  result[0] = dayjs(timePoints.value[0]).format('HH:mm')
+  if (timePoints.value.length > 1) {
+    result[maxIndex.value] = dayjs(timePoints.value[maxIndex.value]).format('HH:mm')
+  }
+  
+  return result
+})
+
+// ========== 方法 ==========
+
+/**
+ * 初始化时间点
+ */
+const initTimePoints = () => {
+  if (!props.timeEngine) return
+
+  timePoints.value = props.timeEngine.getTimePoints()
+  currentIndex.value = props.timeEngine.getCurrentIndex()
+  
+  console.log(`✅ TimeControl 初始化: ${timePoints.value.length} 个时间点`)
+}
+
+/**
+ * Slider 变化处理
+ */
+const handleSliderChange = (value: number) => {
+  if (!props.timeEngine) return
+  props.timeEngine.setTimeByIndex(value)
+}
+
+/**
+ * 播放/暂停
+ */
+const handlePlayPause = () => {
+  if (!props.timeEngine) return
+
+  if (isPlaying.value) {
+    props.timeEngine.pause()
+  } else {
+    props.timeEngine.play()
+  }
+}
+
+/**
+ * 上一个
+ */
+const handlePrevious = () => {
+  if (!props.timeEngine) return
+  props.timeEngine.previous()
+}
+
+/**
+ * 下一个
+ */
+const handleNext = () => {
+  if (!props.timeEngine) return
+  props.timeEngine.next()
+}
+
+/**
+ * 第一个
+ */
+const handleFirst = () => {
+  if (!props.timeEngine) return
+  props.timeEngine.first()
+}
+
+/**
+ * 最后一个
+ */
+const handleLast = () => {
+  if (!props.timeEngine) return
+  props.timeEngine.last()
+}
+
+/**
+ * 播放速度变化
+ */
+const handleSpeedChange = (speed: number) => {
+  if (!props.timeEngine) return
+  props.timeEngine.setPlaySpeed(speed)
+}
+
+/**
+ * 时间变化回调
+ */
+const onTimeChange = (timeISO: string) => {
+  if (!props.timeEngine) return
+  
+  // 更新当前索引
+  currentIndex.value = props.timeEngine.getCurrentIndex()
+  
+  // 更新播放状态
+  isPlaying.value = props.timeEngine.isPlaying()
+}
+
+// ========== 生命周期 ==========
+onMounted(() => {
+  if (props.timeEngine) {
+    initTimePoints()
+    
+    // 注册时间变化回调
+    props.timeEngine.onTimeChange(onTimeChange)
+    
+    // 设置初始播放速度
+    props.timeEngine.setPlaySpeed(playSpeed.value)
+  }
+})
+
+onUnmounted(() => {
+  if (props.timeEngine) {
+    props.timeEngine.offTimeChange(onTimeChange)
+  }
+})
+
+// ========== 监听 ==========
+watch(() => props.timeEngine, (newEngine) => {
+  if (newEngine) {
+    initTimePoints()
+    newEngine.onTimeChange(onTimeChange)
+    newEngine.setPlaySpeed(playSpeed.value)
+  }
+})
+</script>
+
+<style scoped>
+.time-control {
+  width: 100%;
+}
+
+.time-card {
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(10px);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* 当前时间显示 */
+.current-time {
+  text-align: center;
+}
+
+.current-time label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 13px;
+  color: #909399;
+  font-weight: 600;
+}
+
+.time-display {
+  font-size: 24px;
+  font-weight: 700;
+  color: #409eff;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 1px;
+}
+
+/* 时间轴滑块 */
+.time-slider {
+  padding: 0 8px;
+}
+
+/* 播放速度 */
+.speed-control label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 13px;
+  color: #606266;
+  font-weight: 600;
+}
+
+/* 按钮组 */
+.control-buttons {
+  margin: 8px 0;
+}
+
+:deep(.el-button-group .el-button) {
+  margin: 0 !important;
+}
+</style>
+
