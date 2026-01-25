@@ -23,7 +23,7 @@ export class DataManager {
   private ecoRecordsCache: EcoRecord[] | null = null
 
   // 私有构造函数（单例模式）
-  private constructor() {}
+  private constructor() { }
 
   /**
    * 获取单例实例
@@ -50,7 +50,8 @@ export class DataManager {
 
     try {
       console.log('📥 正在加载站点数据...')
-      const rawData = await fetchGeoJSON<RawSiteGeoJSON>('/mock/sites.geojson')
+      const url = `${import.meta.env.BASE_URL}mock/sites.geojson`
+      const rawData = await fetchGeoJSON<RawSiteGeoJSON>(url)
 
       // 解析并转换为统一结构
       this.sitesCache = rawData.features.map((feature) => {
@@ -95,7 +96,8 @@ export class DataManager {
 
     try {
       console.log('📥 正在加载水质数据...')
-      const rawData = await fetchJSON<RawWaterQualityData>('/mock/water_quality.json')
+      const url = `${import.meta.env.BASE_URL}mock/water_quality.json`
+      const rawData = await fetchJSON<RawWaterQualityData>(url)
 
       // 解析并转换为统一结构
       this.waterRecordsCache = rawData.data.map((item) => ({
@@ -132,7 +134,8 @@ export class DataManager {
 
     try {
       console.log('📥 正在加载生态数据...')
-      const rawData = await fetchJSON<RawEcoCountData>('/mock/eco_count.json')
+      const url = `${import.meta.env.BASE_URL}mock/eco_count.json`
+      const rawData = await fetchJSON<RawEcoCountData>(url)
 
       // 解析并转换为统一结构
       this.ecoRecordsCache = rawData.data.map((item) => ({
