@@ -81,7 +81,7 @@
       <el-divider />
       <div class="info-item">
         <span class="label">在线站点：</span>
-        <span class="value">4/5</span>
+        <span class="value">{{ stats.online }}/{{ stats.total }}</span>
       </div>
       <div class="info-item">
         <span class="label">数据更新：</span>
@@ -99,10 +99,15 @@ import dayjs from 'dayjs'
 // ========== Props ==========
 interface Props {
   collapsed?: boolean
+  stats?: {
+    online: number
+    total: number
+  }
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  collapsed: false
+  collapsed: false,
+  stats: () => ({ online: 0, total: 0 })
 })
 
 // ========== Emit ==========

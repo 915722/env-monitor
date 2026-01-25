@@ -22,6 +22,7 @@
       <aside class="sidebar-wrapper">
         <Sidebar
           ref="sidebarRef"
+          :stats="siteStats"
           @module-change="handleModuleChange"
           @measure-start="handleMeasureStart"
           @measure-clear="handleMeasureClear"
@@ -69,7 +70,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, watch } from 'vue'
+import { ref, onMounted, onUnmounted, watch, computed } from 'vue'
 import { ElMessage } from 'element-plus'
 import dayjs from 'dayjs'
 import { Cartesian3 } from 'cesium'
@@ -101,6 +102,11 @@ const waterSiteCount = ref(0)
 const ecoSiteCount = ref(0)
 const timePointCount = ref(0)
 const currentTimeISO = ref<string | null>(null)
+
+const siteStats = computed(() => ({
+  online: waterSiteCount.value + ecoSiteCount.value,
+  total: waterSiteCount.value + ecoSiteCount.value
+}))
 
 // 面板状态
 const showEcoPanel = ref(false)
