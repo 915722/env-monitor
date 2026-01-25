@@ -4,7 +4,7 @@ node_modules
 .pnp.js
 
 # 构建产物
-# dist  # 保留 dist 以便直接部署到 GitHub Pages
+dist
 dist-ssr
 *.local
 
