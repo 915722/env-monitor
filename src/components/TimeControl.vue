@@ -415,7 +415,7 @@ watch(() => props.timeEngine, (newEngine) => {
 /* 时间轴滑块 */
 .time-slider {
   padding: 0 12px;
-  margin-bottom: 24px; /* 为下方的时间刻度文字留出空间，防止与按钮重合 */
+  margin-bottom: 32px; /* 增加到底部间距，确保刻度文字不拥挤 */
 }
 
 /* 播放速度 */
@@ -435,5 +435,13 @@ watch(() => props.timeEngine, (newEngine) => {
 :deep(.el-button-group .el-button) {
   margin: 0 !important;
 }
+
+/* 强制隐藏 Slider Tooltip (双重保险) */
+:deep(.el-slider__button-tooltip), :global(.el-slider__button-tooltip) {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
 </style>
 
