@@ -10,8 +10,7 @@ import {
   ScreenSpaceEventHandler,
   ScreenSpaceEventType,
   defined,
-  HeightReference,
-  JulianDate
+  HeightReference
 } from 'cesium'
 import type { WaterRecord } from '@/modules/data'
 import type { WaterSiteInfo } from './types'

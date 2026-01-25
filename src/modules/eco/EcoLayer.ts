@@ -10,8 +10,7 @@ import {
   ScreenSpaceEventType,
   defined,
   PolylineGraphics,
-  HeightReference,
-  JulianDate
+  HeightReference
 } from 'cesium'
 import type { EcoRecord } from '@/modules/data'
 import type { EcoSiteInfo } from './types'
