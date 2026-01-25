@@ -1,16 +1,15 @@
-<template>
+﻿<template>
   <div id="app" class="app-container">
     <!-- 顶部标题栏 -->
     <header class="app-header">
       <div class="header-left">
-        <el-icon :size="32" color="#fff"><Monitor /></el-icon>
+        <span style="font-size: 32px;">🌐</span>
         <h1>环境监测三维可视化平台</h1>
       </div>
       <div class="header-right">
         <el-space :size="20">
           <div class="header-time">
-            <el-icon><Clock /></el-icon>
-            <span>{{ currentTime }}</span>
+            <span>🕐 {{ currentTime }}</span>
           </div>
           <el-tag type="success" effect="dark">系统运行中</el-tag>
         </el-space>
@@ -54,7 +53,6 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
-import { Monitor, Clock } from '@element-plus/icons-vue'
 import { ElMessage } from 'element-plus'
 import dayjs from 'dayjs'
 import CesiumViewer from '@/modules/scene/CesiumViewer.vue'

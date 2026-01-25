@@ -1,4 +1,4 @@
-<template>
+﻿<template>
   <transition name="popup-fade">
     <div v-if="visible && siteInfo" class="water-popup" :style="popupStyle">
       <div class="popup-header">
@@ -10,25 +10,24 @@
         </div>
         <el-button
           type="text"
-          :icon="Close"
           class="close-btn"
           @click="handleClose"
-        />
+        >✖</el-button>
       </div>
 
       <div class="popup-content">
         <el-descriptions :column="2" size="small" border>
-          <el-descriptions-item label="pH值">
+          <el-descriptions-item label="pH�?>
             <span class="value-text">{{ siteInfo.ph.toFixed(2) }}</span>
           </el-descriptions-item>
-          <el-descriptions-item label="溶解氧">
+          <el-descriptions-item label="溶解�?>
             <span class="value-text">{{ siteInfo.do.toFixed(2) }} mg/L</span>
           </el-descriptions-item>
           <el-descriptions-item label="浊度" v-if="siteInfo.turbidity">
             <span class="value-text">{{ siteInfo.turbidity.toFixed(2) }} NTU</span>
           </el-descriptions-item>
           <el-descriptions-item label="温度" v-if="siteInfo.temperature">
-            <span class="value-text">{{ siteInfo.temperature.toFixed(1) }} ℃</span>
+            <span class="value-text">{{ siteInfo.temperature.toFixed(1) }} �?/span>
           </el-descriptions-item>
         </el-descriptions>
 
@@ -50,7 +49,7 @@
 
 <script setup lang="ts">
 import { ref, computed, watch } from 'vue'
-import { Close, Clock, TrendCharts } from '@element-plus/icons-vue'
+
 import type { WaterSiteInfo } from '@/modules/water/types'
 import dayjs from 'dayjs'
 
@@ -67,14 +66,14 @@ const emit = defineEmits<{
   viewChart: [siteId: string]
 }>()
 
-// ========== 状态 ==========
+// ========== 状�?==========
 const popupStyle = ref({
   left: '50%',
   top: '20%',
   transform: 'translateX(-50%)'
 })
 
-// ========== 计算属性 ==========
+// ========== 计算属�?==========
 
 /**
  * 水质等级文本
@@ -82,17 +81,17 @@ const popupStyle = ref({
 const gradeText = computed(() => {
   if (!props.siteInfo) return ''
   const gradeMap = {
-    1: 'Ⅰ类 优',
-    2: 'Ⅱ类 良',
-    3: 'Ⅲ类 中',
-    4: 'Ⅳ类 差',
-    5: 'Ⅴ类 劣'
+    1: 'Ⅰ类 �?,
+    2: 'Ⅱ类 �?,
+    3: 'Ⅲ类 �?,
+    4: 'Ⅳ类 �?,
+    5: 'Ⅴ类 �?
   }
   return gradeMap[props.siteInfo.grade] || '未知'
 })
 
 /**
- * 格式化时间
+ * 格式化时�?
  */
 const formattedTime = computed(() => {
   if (!props.siteInfo) return '--'

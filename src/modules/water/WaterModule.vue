@@ -1,6 +1,6 @@
-<template>
+﻿<template>
   <div class="water-module">
-    <!-- 自定义弹窗 -->
+    <!-- 自定义弹�?-->
     <WaterPopup
       :visible="popupVisible"
       :site-info="selectedSiteInfo"
@@ -31,7 +31,7 @@
         <el-space direction="vertical" :size="16" style="width: 100%;">
           <!-- 时间选择 -->
           <div>
-            <label class="control-label">选择时间点</label>
+            <label class="control-label">选择时间�?/label>
             <el-select
               v-model="selectedTime"
               placeholder="请选择时间"
@@ -64,7 +64,7 @@
             <el-descriptions-item label="站点数量">
               {{ siteCount }}
             </el-descriptions-item>
-            <el-descriptions-item label="优良率">
+            <el-descriptions-item label="优良�?>
               {{ goodRate }}
             </el-descriptions-item>
             <el-descriptions-item label="当前时间">
@@ -98,7 +98,7 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted, inject } from 'vue'
-import { Droplet, RefreshRight } from '@element-plus/icons-vue'
+
 import { ElMessage } from 'element-plus'
 import type { Viewer } from 'cesium'
 import { WaterLayer } from './WaterLayer'
@@ -110,7 +110,7 @@ import type { WaterSiteInfo } from './types'
 import type { WaterRecord } from '@/modules/data'
 import dayjs from 'dayjs'
 
-// ========== 状态 ==========
+// ========== 状�?==========
 const appStore = useAppStore()
 const viewer = inject<Viewer>('cesiumViewer')
 
@@ -129,7 +129,7 @@ const chartVisible = ref(false)
 
 let waterLayer: WaterLayer | null = null
 
-// ========== 计算属性 ==========
+// ========== 计算属�?==========
 
 /**
  * 优良率（等级1-2的比例）
@@ -150,20 +150,20 @@ const currentTimeDisplay = computed(() => {
 })
 
 /**
- * 图例项
+ * 图例�?
  */
 const legendItems = [
-  { grade: 1, color: '#0066ff', text: 'Ⅰ类 优' },
-  { grade: 2, color: '#00cc66', text: 'Ⅱ类 良' },
-  { grade: 3, color: '#ffcc00', text: 'Ⅲ类 中' },
-  { grade: 4, color: '#ff6600', text: 'Ⅳ类 差' },
-  { grade: 5, color: '#ff0000', text: 'Ⅴ类 劣' }
+  { grade: 1, color: '#0066ff', text: 'Ⅰ类 �? },
+  { grade: 2, color: '#00cc66', text: 'Ⅱ类 �? },
+  { grade: 3, color: '#ffcc00', text: 'Ⅲ类 �? },
+  { grade: 4, color: '#ff6600', text: 'Ⅳ类 �? },
+  { grade: 5, color: '#ff0000', text: 'Ⅴ类 �? }
 ]
 
 // ========== 方法 ==========
 
 /**
- * 初始化
+ * 初始�?
  */
 const init = async () => {
   if (!viewer) {
@@ -187,10 +187,10 @@ const init = async () => {
     waterLayer?.highlightSite(siteInfo.siteId)
   })
 
-  // 加载时间点
+  // 加载时间�?
   await loadTimePoints()
 
-  // 自动加载第一个时间点的数据
+  // 自动加载第一个时间点的数�?
   if (timePoints.value.length > 0) {
     selectedTime.value = timePoints.value[0]
     await loadWaterData()
@@ -198,15 +198,15 @@ const init = async () => {
 }
 
 /**
- * 加载时间点列表
+ * 加载时间点列�?
  */
 const loadTimePoints = async () => {
   try {
     timePoints.value = await dataManager.getWaterTimePoints()
-    console.log(`✅ 加载了 ${timePoints.value.length} 个时间点`)
+    console.log(`�?加载�?${timePoints.value.length} 个时间点`)
   } catch (error) {
-    console.error('❌ 加载时间点失败:', error)
-    ElMessage.error('加载时间点失败')
+    console.error('�?加载时间点失�?', error)
+    ElMessage.error('加载时间点失�?)
   }
 }
 
@@ -215,7 +215,7 @@ const loadTimePoints = async () => {
  */
 const loadWaterData = async () => {
   if (!selectedTime.value) {
-    ElMessage.warning('请先选择时间点')
+    ElMessage.warning('请先选择时间�?)
     return
   }
 
@@ -224,15 +224,15 @@ const loadWaterData = async () => {
     // 加载站点信息
     const sites = await dataManager.getSitesByType('water')
 
-    // 加载该时间点的水质数据
+    // 加载该时间点的水质数�?
     const waterRecords = await dataManager.getWaterAtTime(selectedTime.value)
 
     if (waterRecords.length === 0) {
-      ElMessage.warning('该时间点无水质数据')
+      ElMessage.warning('该时间点无水质数�?)
       return
     }
 
-    // 渲染到地图
+    // 渲染到地�?
     waterLayer?.render(waterRecords, sites)
 
     // 更新统计
@@ -242,9 +242,9 @@ const loadWaterData = async () => {
     // 更新 store 中的时间
     appStore.setCurrentTime(selectedTime.value)
 
-    ElMessage.success(`已加载 ${waterRecords.length} 个站点数据`)
+    ElMessage.success(`已加�?${waterRecords.length} 个站点数据`)
   } catch (error) {
-    console.error('❌ 加载水质数据失败:', error)
+    console.error('�?加载水质数据失败:', error)
     ElMessage.error('加载水质数据失败')
   } finally {
     loading.value = false
@@ -259,7 +259,7 @@ const handleTimeChange = () => {
 }
 
 /**
- * 格式化时间
+ * 格式化时�?
  */
 const formatTime = (timeISO: string): string => {
   return dayjs(timeISO).format('YYYY-MM-DD HH:mm:ss')
@@ -292,12 +292,12 @@ const handleChartClose = () => {
 // ========== 生命周期 ==========
 onMounted(() => {
   init()
-  console.log('✅ 水质监测模块已加载')
+  console.log('�?水质监测模块已加�?)
 })
 
 onUnmounted(() => {
   waterLayer?.destroy()
-  console.log('🗑️ 水质监测模块已卸载')
+  console.log('🗑�?水质监测模块已卸�?)
 })
 </script>
 

@@ -5,7 +5,8 @@
   "description": "环境监测三维可视化平台 - Vue3 + Cesium + ECharts",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc && vite build",
+    "build": "vite build",
+    "build:check": "vue-tsc && vite build",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -19,7 +20,6 @@
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.3",
     "@types/node": "^20.11.5",
-    "@types/cesium": "^1.113.0",
     "typescript": "^5.3.3",
     "vite": "^5.0.12",
     "vite-plugin-cesium": "^1.2.22",

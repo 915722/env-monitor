@@ -1,4 +1,4 @@
-<template>
+﻿<template>
   <div class="cesium-viewer-wrapper">
     <!-- Cesium 容器 -->
     <div id="cesiumContainer" ref="cesiumContainer" class="cesium-container"></div>
@@ -7,8 +7,7 @@
     <div class="basemap-control">
       <el-dropdown @command="handleBaseMapChange" trigger="click">
         <el-button type="primary" size="small">
-          <el-icon><Map /></el-icon>
-          <span style="margin-left: 6px;">{{ currentBaseMapLabel }}</span>
+          <span style="margin-left: 6px;">🗺️ {{ currentBaseMapLabel }}</span>
         </el-button>
         <template #dropdown>
           <el-dropdown-menu>
@@ -33,7 +32,7 @@
 
     <!-- 加载提示 -->
     <div v-if="loading" class="loading-overlay">
-      <el-icon class="is-loading" :size="40"><Loading /></el-icon>
+      <div class="loading-spinner">⏳</div>
       <p>正在初始化三维场景...</p>
     </div>
   </div>
@@ -50,8 +49,7 @@ import {
   ArcGisMapServerImageryProvider,
   Credit
 } from 'cesium'
-import { ElMessage } from 'element-plus'
-import { Map, Loading } from '@element-plus/icons-vue'
+import { ElMessage, ElIcon } from 'element-plus'
 import { useGlobalStore } from '@/store'
 import {
   BASE_MAP_CONFIGS,
@@ -347,6 +345,16 @@ defineExpose({
 .loading-overlay p {
   margin-top: 16px;
   font-size: 16px;
+}
+
+.loading-spinner {
+  font-size: 40px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 /* 隐藏 Cesium 默认控件样式优化 */

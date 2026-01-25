@@ -1,13 +1,12 @@
-<template>
+﻿<template>
   <div class="eco-panel">
     <el-card class="panel-card">
       <template #header>
         <div class="panel-header">
           <div class="header-left">
-            <el-icon><Camera /></el-icon>
-            <span>{{ siteInfo?.siteName || '生态监测站' }}</span>
+            <span>📷 {{ siteInfo?.siteName || '生态监测站' }}</span>
           </div>
-          <el-button type="text" :icon="Close" @click="handleClose" />
+          <el-button type="text" @click="handleClose">✖</el-button>
         </div>
       </template>
 
@@ -81,19 +80,19 @@
         <div class="granularity-section">
           <h4>统计周期</h4>
           <el-radio-group v-model="granularity" @change="handleGranularityChange" size="small">
-            <el-radio-button label="day">日</el-radio-button>
-            <el-radio-button label="week">周</el-radio-button>
-            <el-radio-button label="month">月</el-radio-button>
+            <el-radio-button label="day">�?/el-radio-button>
+            <el-radio-button label="week">�?/el-radio-button>
+            <el-radio-button label="month">�?/el-radio-button>
           </el-radio-group>
         </div>
 
-        <!-- 当天数量柱状图 -->
+        <!-- 当天数量柱状�?-->
         <div class="chart-section">
           <h4>{{ granularityText }}生物数量</h4>
           <div ref="barChartRef" class="chart"></div>
         </div>
 
-        <!-- 趋势折线图 -->
+        <!-- 趋势折线�?-->
         <div class="chart-section">
           <h4>数量变化趋势</h4>
           <div ref="lineChartRef" class="chart"></div>
@@ -105,7 +104,7 @@
 
 <script setup lang="ts">
 import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
-import { Camera, Close, Picture } from '@element-plus/icons-vue'
+
 import * as echarts from 'echarts'
 import type { EChartsOption } from 'echarts'
 import { dataManager } from '@/modules/data'
@@ -124,7 +123,7 @@ const emit = defineEmits<{
   close: []
 }>()
 
-// ========== 状态 ==========
+// ========== 状�?==========
 const loading = ref(false)
 const granularity = ref<TimeGranularity>('day')
 const historyData = ref<EcoRecord[]>([])
@@ -136,7 +135,7 @@ const lineChartRef = ref<HTMLDivElement>()
 let barChart: echarts.ECharts | null = null
 let lineChart: echarts.ECharts | null = null
 
-// ========== 计算属性 ==========
+// ========== 计算属�?==========
 
 /**
  * 粒度文本
@@ -160,7 +159,7 @@ const loadHistoryData = async () => {
 
   loading.value = true
   try {
-    // 加载所有生态数据
+    // 加载所有生态数�?
     const allData = await dataManager.loadEcoCount()
 
     // 筛选当前站点的数据
@@ -168,19 +167,19 @@ const loadHistoryData = async () => {
       .filter((d) => d.siteId === props.siteInfo!.siteId)
       .sort((a, b) => new Date(a.timeISO).getTime() - new Date(b.timeISO).getTime())
 
-    console.log(`📊 加载了 ${historyData.value.length} 条历史数据`)
+    console.log(`📊 加载�?${historyData.value.length} 条历史数据`)
 
     // 渲染图表
     renderCharts()
   } catch (error) {
-    console.error('❌ 加载历史数据失败:', error)
+    console.error('�?加载历史数据失败:', error)
   } finally {
     loading.value = false
   }
 }
 
 /**
- * 数据聚合（按时间粒度）
+ * 数据聚合（按时间粒度�?
  */
 const aggregateData = () => {
   if (historyData.value.length === 0) return []
@@ -238,7 +237,7 @@ const renderCharts = () => {
 }
 
 /**
- * 渲染柱状图（当天/当周/当月数量）
+ * 渲染柱状图（当天/当周/当月数量�?
  */
 const renderBarChart = (data: any[]) => {
   if (!barChartRef.value) return
@@ -247,7 +246,7 @@ const renderBarChart = (data: any[]) => {
     barChart = echarts.init(barChartRef.value)
   }
 
-  // 取最新的数据点
+  // 取最新的数据�?
   const latest = data[data.length - 1]
 
   const option: EChartsOption = {
@@ -302,7 +301,7 @@ const renderBarChart = (data: any[]) => {
 }
 
 /**
- * 渲染折线图（趋势）
+ * 渲染折线图（趋势�?
  */
 const renderLineChart = (data: any[]) => {
   if (!lineChartRef.value) return
@@ -401,19 +400,19 @@ const renderLineChart = (data: any[]) => {
 }
 
 /**
- * 格式化日期显示
+ * 格式化日期显�?
  */
 const formatDate = (dateStr: string): string => {
   if (granularity.value === 'week') {
-    // 周格式: 2026-W03 -> 第3周
+    // 周格�? 2026-W03 -> �?�?
     const match = dateStr.match(/\d+-W(\d+)/)
-    return match ? `第${match[1]}周` : dateStr
+    return match ? `�?{match[1]}周` : dateStr
   }
   if (granularity.value === 'month') {
-    // 月格式: 2026-01 -> 1月
-    return dayjs(dateStr).format('M月')
+    // 月格�? 2026-01 -> 1�?
+    return dayjs(dateStr).format('M�?)
   }
-  // 日格式: 2026-01-25 -> 01-25
+  // 日格�? 2026-01-25 -> 01-25
   return dayjs(dateStr).format('MM-DD')
 }
 

@@ -204,7 +204,8 @@ GeoJSON 格式，包含所有监测站点的位置和基本信息：
 }
 ```
 
-详细数据格式说明请查看 [部署文档](docs/DEPLOY.md)。
+详细数据格式说明请查看项目源代码。
+
 
 ---
 
@@ -309,22 +310,19 @@ export const sceneConfig = {
 
 ### GitHub Pages（推荐）
 
-快速部署到 GitHub Pages，完全免费：
-
-📖 **[GitHub Pages 快速部署指南](DEPLOY_GITHUB.md)** ⭐
-
+快速部署到 GitHub Pages，完全免费。
 只需 3 步：
 1. 修改 `vite.config.ts` 中的仓库名
 2. 推送代码到 GitHub
 3. 配置 GitHub Pages
 
-详细教程：[docs/GITHUB_PAGES.md](docs/GITHUB_PAGES.md)
 
 ---
 
 ### 其他部署方式
 
-详细部署说明请查看 [docs/DEPLOY.md](docs/DEPLOY.md)。
+详细部署说明请查看 [部署文档](docs/DEPLOY.md) (已移除)。
+
 
 ```bash
 # 1. 构建
@@ -367,7 +365,8 @@ server {
 
 ### 3. Cesium 静态资源加载失败
 
-项目已配置 `vite-plugin-cesium`，正常情况下无需额外配置。如果仍有问题，请查看 [部署文档](docs/DEPLOY.md) 的解决方案。
+项目已配置 `vite-plugin-cesium`，正常情况下无需额外配置。
+
 
 ---
 
@@ -422,7 +421,8 @@ MIT License
 
 - 提交 Issue
 - 发送邮件
-- 查看部署文档：[docs/DEPLOY.md](docs/DEPLOY.md)
+- 查看部署文档：(已移除)
+
 
 ---
 

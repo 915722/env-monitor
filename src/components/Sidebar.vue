@@ -1,8 +1,8 @@
-<template>
+﻿<template>
   <aside class="sidebar">
     <!-- Logo 区域 -->
     <div class="sidebar-header">
-      <el-icon :size="28" color="#409EFF"><Location /></el-icon>
+      <span style="font-size: 28px;">🌍</span>
       <h2>功能模块</h2>
     </div>
 
@@ -13,23 +13,19 @@
       @select="handleMenuSelect"
     >
       <el-menu-item index="water">
-        <el-icon><Droplet /></el-icon>
-        <span>水质监测</span>
+        <span>💧 水质监测</span>
       </el-menu-item>
 
       <el-menu-item index="ecology">
-        <el-icon><Camera /></el-icon>
-        <span>生态监测</span>
+        <span>📷 生态监测</span>
       </el-menu-item>
 
       <el-menu-item index="layer">
-        <el-icon><Grid /></el-icon>
-        <span>图层管理</span>
+        <span>📊 图层管理</span>
       </el-menu-item>
 
       <el-menu-item index="measure">
-        <el-icon><Ruler /></el-icon>
-        <span>GIS 工具</span>
+        <span>📏 GIS 工具</span>
       </el-menu-item>
     </el-menu>
 
@@ -97,7 +93,6 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import { Location, Droplet, Camera, Grid, Ruler } from '@element-plus/icons-vue'
 import { useGlobalStore } from '@/store'
 import dayjs from 'dayjs'
 
