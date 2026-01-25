@@ -6,7 +6,7 @@ import { resolve } from 'path'
 // https://vitejs.dev/config/
 export default defineConfig({
   // GitHub Pages 部署配置 - 由 GitHub Actions 在部署时处理
-  base: './',
+  base: '/env-monitor/',
   
   plugins: [
     vue(),
