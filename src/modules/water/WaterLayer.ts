@@ -9,7 +9,6 @@ import {
   Color,
   ScreenSpaceEventHandler,
   ScreenSpaceEventType,
-  ScreenSpaceEventType,
   defined,
   HeightReference
 } from 'cesium'
