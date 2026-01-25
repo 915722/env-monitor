@@ -2,9 +2,9 @@
   "data": [
     {
       "siteId": "water_001",
-      "siteName": "西湖水质站",
+      "siteName": "West Lake Center",
       "timestamp": "2026-01-25T08:00:00Z",
-      "level": 1,
+      "level": 2,
       "parameters": {
         "pH": 7.2,
         "dissolvedOxygen": 8.5,
@@ -14,7 +14,7 @@
     },
     {
       "siteId": "water_001",
-      "siteName": "西湖水质站",
+      "siteName": "West Lake Center",
       "timestamp": "2026-01-25T09:00:00Z",
       "level": 2,
       "parameters": {
@@ -26,7 +26,7 @@
     },
     {
       "siteId": "water_001",
-      "siteName": "西湖水质站",
+      "siteName": "West Lake Center",
       "timestamp": "2026-01-25T10:00:00Z",
       "level": 2,
       "parameters": {
@@ -38,44 +38,512 @@
     },
     {
       "siteId": "water_002",
-      "siteName": "钱塘江监测站",
+      "siteName": "Su Causeway",
       "timestamp": "2026-01-25T08:00:00Z",
       "level": 3,
       "parameters": {
         "pH": 7.0,
-        "dissolvedOxygen": 7.5,
-        "turbidity": 6.0,
-        "temperature": 11.8
+        "dissolvedOxygen": 6.5,
+        "turbidity": 5.2,
+        "temperature": 12.5
       }
     },
     {
       "siteId": "water_002",
-      "siteName": "钱塘江监测站",
+      "siteName": "Su Causeway",
       "timestamp": "2026-01-25T09:00:00Z",
       "level": 3,
       "parameters": {
         "pH": 7.1,
-        "dissolvedOxygen": 7.3,
-        "turbidity": 6.5,
-        "temperature": 12.2
+        "dissolvedOxygen": 6.2,
+        "turbidity": 5.5,
+        "temperature": 13.1
       }
     },
     {
       "siteId": "water_002",
-      "siteName": "钱塘江监测站",
+      "siteName": "Su Causeway",
+      "timestamp": "2026-01-25T10:00:00Z",
+      "level": 3,
+      "parameters": {
+        "pH": 6.9,
+        "dissolvedOxygen": 6.0,
+        "turbidity": 6.0,
+        "temperature": 13.6
+      }
+    },
+    {
+      "siteId": "water_003",
+      "siteName": "Bai Causeway",
+      "timestamp": "2026-01-25T08:00:00Z",
+      "level": 1,
+      "parameters": {
+        "pH": 7.5,
+        "dissolvedOxygen": 9.0,
+        "turbidity": 1.2,
+        "temperature": 12.0
+      }
+    },
+    {
+      "siteId": "water_003",
+      "siteName": "Bai Causeway",
+      "timestamp": "2026-01-25T09:00:00Z",
+      "level": 1,
+      "parameters": {
+        "pH": 7.5,
+        "dissolvedOxygen": 8.8,
+        "turbidity": 1.5,
+        "temperature": 12.8
+      }
+    },
+    {
+      "siteId": "water_003",
+      "siteName": "Bai Causeway",
+      "timestamp": "2026-01-25T10:00:00Z",
+      "level": 1,
+      "parameters": {
+        "pH": 7.6,
+        "dissolvedOxygen": 8.7,
+        "turbidity": 1.8,
+        "temperature": 13.2
+      }
+    },
+    {
+      "siteId": "water_004",
+      "siteName": "Leifeng Pagoda",
+      "timestamp": "2026-01-25T08:00:00Z",
+      "level": 2,
+      "parameters": {
+        "pH": 7.3,
+        "dissolvedOxygen": 7.8,
+        "turbidity": 3.5,
+        "temperature": 12.3
+      }
+    },
+    {
+      "siteId": "water_004",
+      "siteName": "Leifeng Pagoda",
+      "timestamp": "2026-01-25T09:00:00Z",
+      "level": 2,
+      "parameters": {
+        "pH": 7.4,
+        "dissolvedOxygen": 7.5,
+        "turbidity": 3.8,
+        "temperature": 12.9
+      }
+    },
+    {
+      "siteId": "water_004",
+      "siteName": "Leifeng Pagoda",
+      "timestamp": "2026-01-25T10:00:00Z",
+      "level": 3,
+      "parameters": {
+        "pH": 7.2,
+        "dissolvedOxygen": 7.0,
+        "turbidity": 4.2,
+        "temperature": 13.4
+      }
+    },
+    {
+      "siteId": "water_005",
+      "siteName": "Qiantang Bridge",
+      "timestamp": "2026-01-25T08:00:00Z",
+      "level": 4,
+      "parameters": {
+        "pH": 6.8,
+        "dissolvedOxygen": 5.0,
+        "turbidity": 12.0,
+        "temperature": 12.5
+      }
+    },
+    {
+      "siteId": "water_005",
+      "siteName": "Qiantang Bridge",
+      "timestamp": "2026-01-25T09:00:00Z",
+      "level": 4,
+      "parameters": {
+        "pH": 6.7,
+        "dissolvedOxygen": 4.8,
+        "turbidity": 13.5,
+        "temperature": 13.0
+      }
+    },
+    {
+      "siteId": "water_005",
+      "siteName": "Qiantang Bridge",
+      "timestamp": "2026-01-25T10:00:00Z",
+      "level": 5,
+      "parameters": {
+        "pH": 6.5,
+        "dissolvedOxygen": 4.5,
+        "turbidity": 15.0,
+        "temperature": 13.5
+      }
+    },
+    {
+      "siteId": "water_006",
+      "siteName": "Qiantang East",
+      "timestamp": "2026-01-25T08:00:00Z",
+      "level": 3,
+      "parameters": {
+        "pH": 7.0,
+        "dissolvedOxygen": 6.5,
+        "turbidity": 8.0,
+        "temperature": 12.6
+      }
+    },
+    {
+      "siteId": "water_006",
+      "siteName": "Qiantang East",
+      "timestamp": "2026-01-25T09:00:00Z",
+      "level": 3,
+      "parameters": {
+        "pH": 7.1,
+        "dissolvedOxygen": 6.3,
+        "turbidity": 8.5,
+        "temperature": 13.1
+      }
+    },
+    {
+      "siteId": "water_006",
+      "siteName": "Qiantang East",
+      "timestamp": "2026-01-25T10:00:00Z",
+      "level": 3,
+      "parameters": {
+        "pH": 7.0,
+        "dissolvedOxygen": 6.1,
+        "turbidity": 9.0,
+        "temperature": 13.6
+      }
+    },
+    {
+      "siteId": "water_007",
+      "siteName": "Qiantang North",
+      "timestamp": "2026-01-25T08:00:00Z",
+      "level": 2,
+      "parameters": {
+        "pH": 7.2,
+        "dissolvedOxygen": 7.5,
+        "turbidity": 5.0,
+        "temperature": 12.4
+      }
+    },
+    {
+      "siteId": "water_007",
+      "siteName": "Qiantang North",
+      "timestamp": "2026-01-25T09:00:00Z",
+      "level": 2,
+      "parameters": {
+        "pH": 7.3,
+        "dissolvedOxygen": 7.2,
+        "turbidity": 5.5,
+        "temperature": 13.0
+      }
+    },
+    {
+      "siteId": "water_007",
+      "siteName": "Qiantang North",
+      "timestamp": "2026-01-25T10:00:00Z",
+      "level": 2,
+      "parameters": {
+        "pH": 7.2,
+        "dissolvedOxygen": 7.0,
+        "turbidity": 6.0,
+        "temperature": 13.4
+      }
+    },
+    {
+      "siteId": "water_008",
+      "siteName": "Xixi Wetland A",
+      "timestamp": "2026-01-25T08:00:00Z",
+      "level": 1,
+      "parameters": {
+        "pH": 7.4,
+        "dissolvedOxygen": 8.8,
+        "turbidity": 1.0,
+        "temperature": 11.5
+      }
+    },
+    {
+      "siteId": "water_008",
+      "siteName": "Xixi Wetland A",
+      "timestamp": "2026-01-25T09:00:00Z",
+      "level": 1,
+      "parameters": {
+        "pH": 7.5,
+        "dissolvedOxygen": 8.6,
+        "turbidity": 1.2,
+        "temperature": 12.0
+      }
+    },
+    {
+      "siteId": "water_008",
+      "siteName": "Xixi Wetland A",
+      "timestamp": "2026-01-25T10:00:00Z",
+      "level": 1,
+      "parameters": {
+        "pH": 7.5,
+        "dissolvedOxygen": 8.5,
+        "turbidity": 1.4,
+        "temperature": 12.5
+      }
+    },
+    {
+      "siteId": "water_009",
+      "siteName": "Xixi Wetland B",
+      "timestamp": "2026-01-25T08:00:00Z",
+      "level": 1,
+      "parameters": {
+        "pH": 7.4,
+        "dissolvedOxygen": 8.7,
+        "turbidity": 1.1,
+        "temperature": 11.6
+      }
+    },
+    {
+      "siteId": "water_009",
+      "siteName": "Xixi Wetland B",
+      "timestamp": "2026-01-25T09:00:00Z",
+      "level": 1,
+      "parameters": {
+        "pH": 7.5,
+        "dissolvedOxygen": 8.5,
+        "turbidity": 1.3,
+        "temperature": 12.1
+      }
+    },
+    {
+      "siteId": "water_009",
+      "siteName": "Xixi Wetland B",
+      "timestamp": "2026-01-25T10:00:00Z",
+      "level": 2,
+      "parameters": {
+        "pH": 7.4,
+        "dissolvedOxygen": 8.0,
+        "turbidity": 2.5,
+        "temperature": 12.6
+      }
+    },
+    {
+      "siteId": "water_010",
+      "siteName": "Xixi Wetland C",
+      "timestamp": "2026-01-25T08:00:00Z",
+      "level": 2,
+      "parameters": {
+        "pH": 7.3,
+        "dissolvedOxygen": 7.5,
+        "turbidity": 3.0,
+        "temperature": 11.7
+      }
+    },
+    {
+      "siteId": "water_010",
+      "siteName": "Xixi Wetland C",
+      "timestamp": "2026-01-25T09:00:00Z",
+      "level": 2,
+      "parameters": {
+        "pH": 7.4,
+        "dissolvedOxygen": 7.3,
+        "turbidity": 3.2,
+        "temperature": 12.2
+      }
+    },
+    {
+      "siteId": "water_010",
+      "siteName": "Xixi Wetland C",
+      "timestamp": "2026-01-25T10:00:00Z",
+      "level": 2,
+      "parameters": {
+        "pH": 7.3,
+        "dissolvedOxygen": 7.1,
+        "turbidity": 3.5,
+        "temperature": 12.7
+      }
+    },
+    {
+      "siteId": "water_011",
+      "siteName": "Grand Canal A",
+      "timestamp": "2026-01-25T08:00:00Z",
+      "level": 3,
+      "parameters": {
+        "pH": 7.0,
+        "dissolvedOxygen": 6.8,
+        "turbidity": 5.5,
+        "temperature": 12.0
+      }
+    },
+    {
+      "siteId": "water_011",
+      "siteName": "Grand Canal A",
+      "timestamp": "2026-01-25T09:00:00Z",
+      "level": 3,
+      "parameters": {
+        "pH": 7.1,
+        "dissolvedOxygen": 6.5,
+        "turbidity": 6.0,
+        "temperature": 12.5
+      }
+    },
+    {
+      "siteId": "water_011",
+      "siteName": "Grand Canal A",
       "timestamp": "2026-01-25T10:00:00Z",
       "level": 4,
       "parameters": {
         "pH": 6.9,
-        "dissolvedOxygen": 6.8,
-        "turbidity": 7.2,
-        "temperature": 12.5
+        "dissolvedOxygen": 5.5,
+        "turbidity": 8.0,
+        "temperature": 13.0
+      }
+    },
+    {
+      "siteId": "water_012",
+      "siteName": "Grand Canal B",
+      "timestamp": "2026-01-25T08:00:00Z",
+      "level": 4,
+      "parameters": {
+        "pH": 6.8,
+        "dissolvedOxygen": 5.2,
+        "turbidity": 10.0,
+        "temperature": 12.1
+      }
+    },
+    {
+      "siteId": "water_012",
+      "siteName": "Grand Canal B",
+      "timestamp": "2026-01-25T09:00:00Z",
+      "level": 4,
+      "parameters": {
+        "pH": 6.9,
+        "dissolvedOxygen": 5.0,
+        "turbidity": 11.0,
+        "temperature": 12.6
+      }
+    },
+    {
+      "siteId": "water_012",
+      "siteName": "Grand Canal B",
+      "timestamp": "2026-01-25T10:00:00Z",
+      "level": 5,
+      "parameters": {
+        "pH": 6.7,
+        "dissolvedOxygen": 4.0,
+        "turbidity": 15.0,
+        "temperature": 13.1
+      }
+    },
+    {
+      "siteId": "water_013",
+      "siteName": "Xiang Lake A",
+      "timestamp": "2026-01-25T08:00:00Z",
+      "level": 1,
+      "parameters": {
+        "pH": 7.6,
+        "dissolvedOxygen": 9.2,
+        "turbidity": 1.0,
+        "temperature": 12.8
+      }
+    },
+    {
+      "siteId": "water_013",
+      "siteName": "Xiang Lake A",
+      "timestamp": "2026-01-25T09:00:00Z",
+      "level": 1,
+      "parameters": {
+        "pH": 7.7,
+        "dissolvedOxygen": 9.0,
+        "turbidity": 1.1,
+        "temperature": 13.3
+      }
+    },
+    {
+      "siteId": "water_013",
+      "siteName": "Xiang Lake A",
+      "timestamp": "2026-01-25T10:00:00Z",
+      "level": 1,
+      "parameters": {
+        "pH": 7.6,
+        "dissolvedOxygen": 8.9,
+        "turbidity": 1.2,
+        "temperature": 13.8
+      }
+    },
+    {
+      "siteId": "water_014",
+      "siteName": "Xiang Lake B",
+      "timestamp": "2026-01-25T08:00:00Z",
+      "level": 2,
+      "parameters": {
+        "pH": 7.5,
+        "dissolvedOxygen": 8.0,
+        "turbidity": 2.0,
+        "temperature": 12.9
+      }
+    },
+    {
+      "siteId": "water_014",
+      "siteName": "Xiang Lake B",
+      "timestamp": "2026-01-25T09:00:00Z",
+      "level": 2,
+      "parameters": {
+        "pH": 7.6,
+        "dissolvedOxygen": 7.8,
+        "turbidity": 2.2,
+        "temperature": 13.4
+      }
+    },
+    {
+      "siteId": "water_014",
+      "siteName": "Xiang Lake B",
+      "timestamp": "2026-01-25T10:00:00Z",
+      "level": 2,
+      "parameters": {
+        "pH": 7.5,
+        "dissolvedOxygen": 7.5,
+        "turbidity": 2.5,
+        "temperature": 13.9
+      }
+    },
+    {
+      "siteId": "water_015",
+      "siteName": "Qingshan Lake",
+      "timestamp": "2026-01-25T08:00:00Z",
+      "level": 1,
+      "parameters": {
+        "pH": 7.5,
+        "dissolvedOxygen": 9.5,
+        "turbidity": 0.8,
+        "temperature": 11.0
+      }
+    },
+    {
+      "siteId": "water_015",
+      "siteName": "Qingshan Lake",
+      "timestamp": "2026-01-25T09:00:00Z",
+      "level": 1,
+      "parameters": {
+        "pH": 7.6,
+        "dissolvedOxygen": 9.2,
+        "turbidity": 1.0,
+        "temperature": 11.5
+      }
+    },
+    {
+      "siteId": "water_015",
+      "siteName": "Qingshan Lake",
+      "timestamp": "2026-01-25T10:00:00Z",
+      "level": 1,
+      "parameters": {
+        "pH": 7.5,
+        "dissolvedOxygen": 9.0,
+        "turbidity": 1.2,
+        "temperature": 12.0
       }
     }
   ],
   "meta": {
-    "total": 6,
+    "total": 45,
     "updateTime": "2026-01-25T10:00:00Z",
-    "description": "水质监测数据 - 3个时间点，演示时间轴播放"
+    "description": "Expanded mock water quality data"
   }
 }

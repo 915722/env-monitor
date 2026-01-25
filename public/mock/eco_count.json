@@ -2,11 +2,11 @@
   "data": [
     {
       "siteId": "camera_001",
-      "siteName": "湿地生态摄像头A",
+      "siteName": "Forest Cam A",
       "timestamp": "2026-01-25T08:00:00Z",
-      "species": "白鹭",
-      "birdCount": 15,
-      "fishCount": 8,
+      "species": "Wild Boar, Squirrel",
+      "birdCount": 5,
+      "fishCount": 0,
       "images": [
         "https://picsum.photos/400/300?random=1"
       ],
@@ -14,32 +14,162 @@
     },
     {
       "siteId": "camera_001",
-      "siteName": "湿地生态摄像头A",
+      "siteName": "Forest Cam A",
       "timestamp": "2026-01-25T09:00:00Z",
-      "species": "白鹭",
-      "birdCount": 23,
-      "fishCount": 12,
+      "species": "Sparrow, Squirrel",
+      "birdCount": 12,
+      "fishCount": 0,
       "images": [
         "https://picsum.photos/400/300?random=2"
       ]
     },
     {
       "siteId": "camera_001",
-      "siteName": "湿地生态摄像头A",
+      "siteName": "Forest Cam A",
       "timestamp": "2026-01-25T10:00:00Z",
-      "species": "白鹭",
-      "birdCount": 18,
+      "species": "Crow",
+      "birdCount": 8,
+      "fishCount": 0,
+      "images": [
+        "https://picsum.photos/400/300?random=3"
+      ]
+    },
+    {
+      "siteId": "camera_002",
+      "siteName": "Xixi Bird Watch",
+      "timestamp": "2026-01-25T08:00:00Z",
+      "species": "Egret, Heron",
+      "birdCount": 45,
       "fishCount": 10,
       "images": [
-        "https://picsum.photos/400/300?random=3",
         "https://picsum.photos/400/300?random=4"
-      ],
-      "videoUrl": "https://www.w3schools.com/html/movie.mp4"
+      ]
+    },
+    {
+      "siteId": "camera_002",
+      "siteName": "Xixi Bird Watch",
+      "timestamp": "2026-01-25T09:00:00Z",
+      "species": "Egret, Heron, Duck",
+      "birdCount": 60,
+      "fishCount": 15,
+      "images": [
+        "https://picsum.photos/400/300?random=5"
+      ]
+    },
+    {
+      "siteId": "camera_002",
+      "siteName": "Xixi Bird Watch",
+      "timestamp": "2026-01-25T10:00:00Z",
+      "species": "Egret",
+      "birdCount": 35,
+      "fishCount": 12,
+      "images": [
+        "https://picsum.photos/400/300?random=6"
+      ]
+    },
+    {
+      "siteId": "camera_003",
+      "siteName": "Botanic Garden",
+      "timestamp": "2026-01-25T08:00:00Z",
+      "species": "Magpie",
+      "birdCount": 20,
+      "fishCount": 0,
+      "images": [
+        "https://picsum.photos/400/300?random=7"
+      ]
+    },
+    {
+      "siteId": "camera_003",
+      "siteName": "Botanic Garden",
+      "timestamp": "2026-01-25T09:00:00Z",
+      "species": "Magpie, Robin",
+      "birdCount": 30,
+      "fishCount": 0,
+      "images": [
+        "https://picsum.photos/400/300?random=8"
+      ]
+    },
+    {
+      "siteId": "camera_003",
+      "siteName": "Botanic Garden",
+      "timestamp": "2026-01-25T10:00:00Z",
+      "species": "Robin",
+      "birdCount": 15,
+      "fishCount": 0,
+      "images": [
+        "https://picsum.photos/400/300?random=9"
+      ]
+    },
+    {
+      "siteId": "camera_004",
+      "siteName": "Zoo Cam",
+      "timestamp": "2026-01-25T08:00:00Z",
+      "species": "Peacock",
+      "birdCount": 5,
+      "fishCount": 0,
+      "images": [
+        "https://picsum.photos/400/300?random=10"
+      ]
+    },
+    {
+      "siteId": "camera_004",
+      "siteName": "Zoo Cam",
+      "timestamp": "2026-01-25T09:00:00Z",
+      "species": "Peacock, Swan",
+      "birdCount": 8,
+      "fishCount": 2,
+      "images": [
+        "https://picsum.photos/400/300?random=11"
+      ]
+    },
+    {
+      "siteId": "camera_004",
+      "siteName": "Zoo Cam",
+      "timestamp": "2026-01-25T10:00:00Z",
+      "species": "Peacock",
+      "birdCount": 6,
+      "fishCount": 0,
+      "images": [
+        "https://picsum.photos/400/300?random=12"
+      ]
+    },
+    {
+      "siteId": "camera_005",
+      "siteName": "Estuary Cam",
+      "timestamp": "2026-01-25T08:00:00Z",
+      "species": "Seagull",
+      "birdCount": 100,
+      "fishCount": 50,
+      "images": [
+        "https://picsum.photos/400/300?random=13"
+      ]
+    },
+    {
+      "siteId": "camera_005",
+      "siteName": "Estuary Cam",
+      "timestamp": "2026-01-25T09:00:00Z",
+      "species": "Seagull, Fish",
+      "birdCount": 120,
+      "fishCount": 80,
+      "images": [
+        "https://picsum.photos/400/300?random=14"
+      ]
+    },
+    {
+      "siteId": "camera_005",
+      "siteName": "Estuary Cam",
+      "timestamp": "2026-01-25T10:00:00Z",
+      "species": "Seagull",
+      "birdCount": 90,
+      "fishCount": 60,
+      "images": [
+        "https://picsum.photos/400/300?random=15"
+      ]
     }
   ],
   "meta": {
-    "total": 3,
+    "total": 15,
     "updateTime": "2026-01-25T10:00:00Z",
-    "description": "生态监测数据 - 3个时间点，演示时间轴播放"
+    "description": "Expanded mock eco count data"
   }
 }

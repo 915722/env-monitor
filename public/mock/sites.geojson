@@ -5,13 +5,17 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [120.15, 30.25, 50]
+        "coordinates": [
+          120.15,
+          30.25,
+          50
+        ]
       },
       "properties": {
         "id": "water_001",
-        "name": "西湖水质站",
+        "name": "West Lake Center",
         "type": "water",
-        "riverId": "river_qiantang",
+        "riverId": "river_xihu",
         "status": "online"
       }
     },
@@ -19,11 +23,69 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [120.20, 30.30, 45]
+        "coordinates": [
+          120.14,
+          30.24,
+          50
+        ]
       },
       "properties": {
         "id": "water_002",
-        "name": "钱塘江监测站",
+        "name": "Su Causeway",
+        "type": "water",
+        "riverId": "river_xihu",
+        "status": "online"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.15,
+          30.26,
+          50
+        ]
+      },
+      "properties": {
+        "id": "water_003",
+        "name": "Bai Causeway",
+        "type": "water",
+        "riverId": "river_xihu",
+        "status": "online"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.16,
+          30.23,
+          50
+        ]
+      },
+      "properties": {
+        "id": "water_004",
+        "name": "Leifeng Pagoda",
+        "type": "water",
+        "riverId": "river_xihu",
+        "status": "online"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.20,
+          30.30,
+          45
+        ]
+      },
+      "properties": {
+        "id": "water_005",
+        "name": "Qiantang Bridge",
         "type": "water",
         "riverId": "river_qiantang",
         "status": "online"
@@ -33,13 +95,265 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [119.95, 30.15, 120]
+        "coordinates": [
+          120.22,
+          30.28,
+          45
+        ]
+      },
+      "properties": {
+        "id": "water_006",
+        "name": "Qiantang East",
+        "type": "water",
+        "riverId": "river_qiantang",
+        "status": "offline"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.18,
+          30.32,
+          45
+        ]
+      },
+      "properties": {
+        "id": "water_007",
+        "name": "Qiantang North",
+        "type": "water",
+        "riverId": "river_qiantang",
+        "status": "online"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.06,
+          30.26,
+          40
+        ]
+      },
+      "properties": {
+        "id": "water_008",
+        "name": "Xixi Wetland A",
+        "type": "water",
+        "riverId": "river_xixi",
+        "status": "online"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.08,
+          30.27,
+          40
+        ]
+      },
+      "properties": {
+        "id": "water_009",
+        "name": "Xixi Wetland B",
+        "type": "water",
+        "riverId": "river_xixi",
+        "status": "online"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.05,
+          30.25,
+          40
+        ]
+      },
+      "properties": {
+        "id": "water_010",
+        "name": "Xixi Wetland C",
+        "type": "water",
+        "riverId": "river_xixi",
+        "status": "online"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.16,
+          30.30,
+          30
+        ]
+      },
+      "properties": {
+        "id": "water_011",
+        "name": "Grand Canal A",
+        "type": "water",
+        "riverId": "river_canal",
+        "status": "online"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.16,
+          30.32,
+          30
+        ]
+      },
+      "properties": {
+        "id": "water_012",
+        "name": "Grand Canal B",
+        "type": "water",
+        "riverId": "river_canal",
+        "status": "maintenance"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.18,
+          30.15,
+          60
+        ]
+      },
+      "properties": {
+        "id": "water_013",
+        "name": "Xiang Lake A",
+        "type": "water",
+        "riverId": "river_xiang",
+        "status": "online"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.19,
+          30.16,
+          60
+        ]
+      },
+      "properties": {
+        "id": "water_014",
+        "name": "Xiang Lake B",
+        "type": "water",
+        "riverId": "river_xiang",
+        "status": "online"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.00,
+          30.20,
+          80
+        ]
+      },
+      "properties": {
+        "id": "water_015",
+        "name": "Qingshan Lake",
+        "type": "water",
+        "riverId": "river_qingshan",
+        "status": "online"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          119.95,
+          30.15,
+          120
+        ]
       },
       "properties": {
         "id": "camera_001",
-        "name": "湿地生态摄像头A",
+        "name": "Forest Cam A",
         "type": "camera",
         "status": "online"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.07,
+          30.27,
+          45
+        ]
+      },
+      "properties": {
+        "id": "camera_002",
+        "name": "Xixi Bird Watch",
+        "type": "camera",
+        "status": "online"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.12,
+          30.26,
+          50
+        ]
+      },
+      "properties": {
+        "id": "camera_003",
+        "name": "Botanic Garden",
+        "type": "camera",
+        "status": "online"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.13,
+          30.21,
+          60
+        ]
+      },
+      "properties": {
+        "id": "camera_004",
+        "name": "Zoo Cam",
+        "type": "camera",
+        "status": "online"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.30,
+          30.30,
+          40
+        ]
+      },
+      "properties": {
+        "id": "camera_005",
+        "name": "Estuary Cam",
+        "type": "camera",
+        "status": "offline"
       }
     }
   ]
