@@ -532,9 +532,9 @@ onUnmounted(() => {
 .time-control-wrapper {
   position: absolute;
   bottom: 24px;
-  left: 50%;
+  left: calc(50% + 140px);
   transform: translateX(-50%);
-  width: 800px;
+  width: 700px;
   z-index: 100;
 }
 
