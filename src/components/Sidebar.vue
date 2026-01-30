@@ -294,6 +294,15 @@ setInterval(() => {
 
 .measure-buttons {
   margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.measure-buttons .el-button {
+  width: 80%;
+  margin-left: 0 !important; /* Reset default margins */
+  margin-right: 0 !important;
 }
 </style>
 

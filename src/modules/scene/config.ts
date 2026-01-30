@@ -64,8 +64,8 @@ export const VIEWER_OPTIONS = {
   timeline: false,               // 不显示时间轴
   baseLayerPicker: false,        // 不显示图层选择器
   geocoder: false,               // 不显示地名搜索
-  homeButton: true,              // 显示Home按钮
-  sceneModePicker: true,         // 显示场景模式切换（3D/2D/哥伦布视图）
+  homeButton: false,              // 不显示Home按钮
+  sceneModePicker: false,         // 不显示场景模式切换（3D/2D/哥伦布视图）
   navigationHelpButton: false,   // 不显示帮助按钮
   fullscreenButton: false,       // 不显示全屏按钮
   vrButton: false,               // 不显示VR按钮
