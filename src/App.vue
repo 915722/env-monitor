@@ -370,10 +370,10 @@ const handleModuleChange = (module: string) => {
   if (module === 'water' && waterLayer) {
     const viewer = getViewer()
     viewer.camera.flyTo({
-      destination: Cartesian3.fromDegrees(120.15, 30.28, 50000),
+      destination: Cartesian3.fromDegrees(120.12, 30.24, 50000),
       orientation: {
         heading: 0,
-        pitch: -0.8,
+        pitch: -1.57, // -90 degrees (top-down view)
         roll: 0
       }
     })
@@ -381,10 +381,10 @@ const handleModuleChange = (module: string) => {
   } else if (module === 'ecology' && ecoLayer) {
     const viewer = getViewer()
     viewer.camera.flyTo({
-      destination: Cartesian3.fromDegrees(120.15, 30.28, 50000),
+      destination: Cartesian3.fromDegrees(120.12, 30.24, 50000),
       orientation: {
         heading: 0,
-        pitch: -0.8,
+        pitch: -1.57, // -90 degrees (top-down view)
         roll: 0
       }
     })
