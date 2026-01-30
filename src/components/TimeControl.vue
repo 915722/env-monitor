@@ -1,4 +1,4 @@
-﻿<template>
+<template>
   <div class="time-control" :class="{ 'is-collapsed': isCollapsed }">
     <div v-if="isCollapsed" class="expand-btn" @click="toggleCollapse">
       <el-icon size="24"><Timer /></el-icon>
@@ -32,7 +32,8 @@
             :min="0"
             :max="maxIndex"
             :marks="marks"
-            :show-tooltip="false"
+            :show-tooltip="true"
+            :format-tooltip="formatTooltip"
             :disabled="!hasTimePoints"
             @change="handleSliderChange"
           />
@@ -66,34 +67,33 @@
           </el-button-group>
         </div>
 
-        <!-- 播放速度 -->
-        <div class="speed-control">
-          <label>播放速度</label>
-          <el-radio-group v-model="playSpeed" @change="handleSpeedChange" size="small">
-            <el-radio-button :label="500">快速</el-radio-button>
-            <el-radio-button :label="1000">正常</el-radio-button>
-            <el-radio-button :label="2000">慢速</el-radio-button>
-          </el-radio-group>
-        </div>
+        <!-- 播放速度和状态信息 -->
+        <div class="speed-and-status">
+          <div class="speed-control">
+            <label>播放速度</label>
+            <el-radio-group v-model="playSpeed" @change="handleSpeedChange" size="small">
+              <el-radio-button :label="500">快速</el-radio-button>
+              <el-radio-button :label="1000">正常</el-radio-button>
+              <el-radio-button :label="2000">慢速</el-radio-button>
+            </el-radio-group>
+          </div>
 
-        <!-- 统计信息 -->
-        <el-divider content-position="left">时间统计</el-divider>
-        <el-descriptions :column="2" size="small" border>
-          <el-descriptions-item label="时间点数">
-            {{ timePointCount }}
-          </el-descriptions-item>
-          <el-descriptions-item label="当前进度">
-            {{ progressText }}
-          </el-descriptions-item>
-          <el-descriptions-item label="时间范围">
-            {{ timeRangeText }}
-          </el-descriptions-item>
-          <el-descriptions-item label="播放状态">
-            <el-tag :type="statusType" size="small">
-              {{ statusText }}
-            </el-tag>
-          </el-descriptions-item>
-        </el-descriptions>
+          <!-- 简化的状态信息 -->
+          <div class="status-info">
+            <div class="status-item">
+              <span class="status-label">进度：</span>
+              <span class="status-value">{{ progressText }}</span>
+            </div>
+            <div class="status-item">
+              <span class="status-label">范围：</span>
+              <span class="status-value">{{ timeRangeText }}</span>
+            </div>
+            <div class="status-item">
+              <span class="status-label">状态：</span>
+              <el-tag :type="statusType" size="small">{{ statusText }}</el-tag>
+            </div>
+          </div>
+        </div>
       </el-space>
     </el-card>
   </div>
@@ -302,6 +302,17 @@ const handleSpeedChange = (speed: number) => {
 }
 
 /**
+ * 格式化 Tooltip
+ */
+const formatTooltip = (value: number) => {
+  if (!hasTimePoints.value || value >= timePoints.value.length) {
+    return ''
+  }
+  const time = timePoints.value[value]
+  return dayjs(time).format('HH:mm:ss')
+}
+
+/**
  * 时间变化回调
  */
 const onTimeChange = (timeISO: string) => {
@@ -415,15 +426,49 @@ watch(() => props.timeEngine, (newEngine) => {
 /* 时间轴滑块 */
 .time-slider {
   padding: 0 12px;
-  margin-bottom: 32px; /* 增加到底部间距，确保刻度文字不拥挤 */
+  margin-bottom: 48px; /* 增加底部间距，避免刻度标记重叠 */
 }
 
-/* 播放速度 */
+/* 播放速度和状态信息 */
+.speed-and-status {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
 .speed-control label {
   display: block;
   margin-bottom: 8px;
   font-size: 13px;
   color: #606266;
+  font-weight: 600;
+}
+
+/* 状态信息 */
+.status-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  background: #f5f7fa;
+  border-radius: 6px;
+  font-size: 13px;
+}
+
+.status-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.status-label {
+  color: #909399;
+  font-weight: 500;
+  min-width: 50px;
+}
+
+.status-value {
+  color: #303133;
   font-weight: 600;
 }
 
@@ -436,11 +481,22 @@ watch(() => props.timeEngine, (newEngine) => {
   margin: 0 !important;
 }
 
-/* 强制隐藏 Slider Tooltip (双重保险) */
-:deep(.el-slider__button-tooltip), :global(.el-slider__button-tooltip) {
-  display: none !important;
-  opacity: 0 !important;
-  visibility: hidden !important;
+/* Slider 标记样式优化 */
+:deep(.el-slider__marks-text) {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #909399;
+  white-space: nowrap;
+}
+
+/* Tooltip 样式优化 */
+:deep(.el-slider__button-wrapper) {
+  z-index: 10;
+}
+
+:deep(.el-popper.is-dark) {
+  background: rgba(48, 49, 51, 0.9);
+  backdrop-filter: blur(8px);
 }
 
 </style>
