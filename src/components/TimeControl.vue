@@ -41,27 +41,27 @@
 
         <!-- 播放控制按钮 -->
         <div class="control-buttons">
-          <el-button-group style="width: 100%;">
-            <el-button style="flex: 1;" @click="handleFirst" :disabled="!hasTimePoints">
+          <el-button-group>
+            <el-button @click="handleFirst" :disabled="!hasTimePoints">
               <el-icon><DArrowLeft /></el-icon>
             </el-button>
-            <el-button style="flex: 1;" @click="handlePrevious" :disabled="!hasTimePoints">
+            <el-button @click="handlePrevious" :disabled="!hasTimePoints">
               <el-icon><ArrowLeft /></el-icon>
             </el-button>
             <el-button
-              style="flex: 2;"
               type="primary"
               @click="handlePlayPause"
               :disabled="!hasTimePoints"
+              style="min-width: 100px;"
             >
               <el-icon v-if="isPlaying"><VideoPause /></el-icon>
               <el-icon v-else><VideoPlay /></el-icon>
               <span style="margin-left: 8px;">{{ isPlaying ? '暂停' : '播放' }}</span>
             </el-button>
-            <el-button style="flex: 1;" @click="handleNext" :disabled="!hasTimePoints">
+            <el-button @click="handleNext" :disabled="!hasTimePoints">
               <el-icon><ArrowRight /></el-icon>
             </el-button>
-            <el-button style="flex: 1;" @click="handleLast" :disabled="!hasTimePoints">
+            <el-button @click="handleLast" :disabled="!hasTimePoints">
               <el-icon><DArrowRight /></el-icon>
             </el-button>
           </el-button-group>
@@ -429,11 +429,27 @@ watch(() => props.timeEngine, (newEngine) => {
   margin-bottom: 48px; /* 增加底部间距，避免刻度标记重叠 */
 }
 
+/* 按钮组 */
+.control-buttons {
+  margin: 8px 0;
+  display: flex;
+  justify-content: center;
+}
+
+:deep(.el-button-group .el-button) {
+  margin: 0 !important;
+}
+
 /* 播放速度和状态信息 */
 .speed-and-status {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  align-items: center; /* Center children visually */
+}
+
+.speed-control {
+  text-align: center;
 }
 
 .speed-control label {
@@ -449,36 +465,12 @@ watch(() => props.timeEngine, (newEngine) => {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  padding: 12px;
+  padding: 12px 24px; /* Wider padding for better look */
   background: #f5f7fa;
   border-radius: 6px;
   font-size: 13px;
-}
-
-.status-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.status-label {
-  color: #909399;
-  font-weight: 500;
-  min-width: 50px;
-}
-
-.status-value {
-  color: #303133;
-  font-weight: 600;
-}
-
-/* 按钮组 */
-.control-buttons {
-  margin: 8px 0;
-}
-
-:deep(.el-button-group .el-button) {
-  margin: 0 !important;
+  width: fit-content; /* Only take necessary width */
+  margin: 0 auto; /* Center block */
 }
 
 /* Slider 标记样式优化 */
