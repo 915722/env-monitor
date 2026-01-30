@@ -16,7 +16,7 @@
         </div>
       </template>
 
-      <el-space direction="vertical" :size="16" style="width: 100%;">
+      <div class="control-layout">
         <!-- 当前时间显示 -->
         <div class="current-time">
           <label>当前时间</label>
@@ -94,7 +94,7 @@
             </div>
           </div>
         </div>
-      </el-space>
+      </div>
     </el-card>
   </div>
 </template>
@@ -497,6 +497,40 @@ watch(() => props.timeEngine, (newEngine) => {
 :deep(.el-popper.is-dark) {
   background: rgba(48, 49, 51, 0.9);
   backdrop-filter: blur(8px);
+}
+
+
+/* Slider Customization */
+:deep(.el-slider__runway) {
+  height: 12px;
+  background-color: #e4e7ed;
+  border-radius: 6px;
+}
+
+:deep(.el-slider__bar) {
+  height: 12px;
+  background-color: #409eff;
+  border-radius: 6px;
+}
+
+:deep(.el-slider__button) {
+  width: 24px;
+  height: 24px;
+  border: 3px solid #409eff;
+  background-color: #fff;
+  border-radius: 6px; /* Square with rounded corners aka "Big Box" */
+  transition: transform 0.2s;
+}
+
+:deep(.el-slider__button:hover) {
+  transform: scale(1.15);
+}
+
+:deep(.el-slider__marks-text) {
+  margin-top: 15px; /* Increase gap to prevent overlap with larger handle */
+  font-size: 13px;
+  font-weight: 500;
+  color: #606266;
 }
 
 </style>
