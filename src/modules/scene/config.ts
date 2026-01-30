@@ -48,9 +48,9 @@ export const TIANDITU_TOKEN = ''
  * 中国区域默认相机视角
  */
 export const CHINA_VIEW: CameraView = {
-  longitude: 105.0, // 经度：中国中心
-  latitude: 35.0,   // 纬度：中国中心
-  height: 4000000,  // 高度：4000km
+  longitude: 118.79, // 经度：南京（中心）
+  latitude: 32.07,   // 纬度：南京（中心）
+  height: 40000,     // 高度：40km
   heading: 0,
   pitch: -90,       // 俯视角度
   roll: 0
